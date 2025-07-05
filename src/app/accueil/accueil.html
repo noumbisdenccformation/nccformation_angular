@@ -68,3 +68,124 @@
   <div class="fas fa-cog nut1"></div>
   <div class="fas fa-cog nut2"></div>
 </section>
+
+<!-- Section Héro -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">Bienvenue chez <span class="highlight">NCC Formation</span></h1>
+        <p class="hero-subtitle">Votre partenaire pour l'épanouissement personnel et professionnel</p>
+        <p class="hero-description">
+          Découvrez nos formations en ligne, coaching personnalisé, événements enrichissants 
+          et ressources exclusives pour réussir dans le monde digital.
+        </p>
+        <div class="hero-buttons">
+          <a routerLink="/formation" class="btn btn-primary">Découvrir nos formations</a>
+          <a routerLink="/coaching" class="btn btn-secondary">Demander un coaching</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="assets/img/Composition2.png" alt="NCC Formation" class="hero-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Services -->
+<section class="services-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Nos Services</h2>
+      <p>Une approche complète pour votre développement personnel et professionnel</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3>Formations en ligne</h3>
+        <p>Accédez à nos formations spécialisées en développement personnel et numérique, conçues pour tous les niveaux.</p>
+        <a routerLink="/formation" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <h3>Coaching personnalisé</h3>
+        <p>Bénéficiez d'un accompagnement sur mesure avec nos experts pour atteindre vos objectifs professionnels.</p>
+        <a routerLink="/coaching" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <h3>Événements</h3>
+        <p>Participez à nos conférences, ateliers et webinaires pour élargir vos horizons et réseauter.</p>
+        <a routerLink="/evenements" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <h3>Ressources</h3>
+        <p>Explorez notre bibliothèque de documents, guides et liens utiles pour approfondir vos connaissances.</p>
+        <a routerLink="/ressources" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <h3>Boutique</h3>
+        <p>Découvrez nos produits et services sélectionnés pour vous accompagner dans votre développement.</p>
+        <a routerLink="/boutique" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Communauté</h3>
+        <p>Rejoignez notre communauté WhatsApp pour échanger et partager avec d'autres passionnés.</p>
+        <a href="https://chat.whatsapp.com/K74iVrPwypGJ3h4YN1taiN" target="_blank" class="service-link">Rejoindre <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Galerie -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Découvrez nos activités</h2>
+      <p>Un aperçu de nos formations et événements</p>
+    </div>
+    
+    <div class="gallery-container">
+      <div class="gallery">
+        <img *ngFor="let fruit of fruits" [src]="fruit.imageUrl" [alt]="fruit.title" class="gallery-item">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Call-to-Action -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Prêt à transformer votre avenir ?</h2>
+      <p>Rejoignez NCC Formation et commencez votre voyage vers l'excellence professionnelle</p>
+      <div class="cta-buttons">
+        <a routerLink="/connexion" class="btn btn-primary">Commencer maintenant</a>
+        <a href="https://chat.whatsapp.com/K74iVrPwypGJ3h4YN1taiN" target="_blank" class="btn btn-secondary">
+          <i class="fab fa-whatsapp"></i> Rejoindre le groupe
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

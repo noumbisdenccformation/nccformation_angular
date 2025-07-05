@@ -1,21 +1,92 @@
-<footer>
-  <div class="dessus">
-    <div class="adresse" id="adresse">
-      <div class="element">
-        <i class='fa fa-location-pin'></i>
-        <p class="location mb-0 pb-0">carrefour IPA - Ange Raphael / Douala</p>
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Section principale -->
+    <div class="footer-main">
+      <!-- Logo et description -->
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="assets/img/logo-ncc.png" alt="NCC Formation" class="footer-logo-img">
+          <div class="footer-logo-text">
+            <h3>NCC Formation</h3>
+            <p>Former • Informer • Transformer</p>
+          </div>
+        </div>
+        <p class="footer-description">
+          Votre partenaire pour l'épanouissement personnel et professionnel. 
+          Découvrez nos formations, coaching et ressources pour réussir dans le monde digital.
+        </p>
+        <div class="social-links">
+          <a href="https://chat.whatsapp.com/K74iVrPwypGJ3h4YN1taiN" target="_blank" class="social-link whatsapp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="#" class="social-link facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="#" class="social-link linkedin">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="#" class="social-link youtube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
       </div>
-      <div class="element">
-        <i class='fa fa-envelope-square'></i>
-        <p class="email mb-0 pb-0">noumbissiej&#64;gmail.com</p>
+
+      <!-- Services -->
+      <div class="footer-section">
+        <h4>Nos Services</h4>
+        <ul class="footer-links">
+          <li><a routerLink="/formation">Formations en ligne</a></li>
+          <li><a routerLink="/coaching">Coaching personnalisé</a></li>
+          <li><a routerLink="/evenements">Événements</a></li>
+          <li><a routerLink="/ressources">Ressources</a></li>
+          <li><a routerLink="/boutique">Boutique</a></li>
+        </ul>
       </div>
-      <div class="element">
-        <i class='fa fa-phone'></i>
-        <p class="phone mb-0 pb-0">(+237) 677 27 74 51 / 658 78 02 93</p>
+
+      <!-- Contact -->
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>(+237) 677 27 74 51</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>(+237) 658 78 02 93</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>noumbissiej&#64;gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Carrefour IPA - Ange Raphael / Douala</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="footer-section">
+        <h4>Newsletter</h4>
+        <p>Restez informé de nos dernières formations et événements</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Votre email" class="newsletter-input">
+          <button type="submit" class="newsletter-btn">S'abonner</button>
+        </form>
       </div>
     </div>
-  </div>
-  <div class="dessous">
-    <div class="copyright">&copy; Copyright &#64; <span>{{ currentYear }}</span> by <span>NCC-formation</span> | All rights reserved!</div>
+
+    <!-- Section inférieure -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p>&copy; 2024 NCC Formation. Tous droits réservés.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Mentions légales</a>
+          <a href="#">Politique de confidentialité</a>
+          <a href="#">Conditions d'utilisation</a>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>

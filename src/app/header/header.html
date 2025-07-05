@@ -1,24 +1,44 @@
-<header>
-  <div class="logo">
-    <a routerLink="/accueil"><img src="assets/img/logo-ncc.png" alt="Logo NCC"></a>
-  </div>
-  <div class="dessus">
-    <div class="menudvptperso">
-      <a class="dvpt" routerLink="/boutique">Boutique</a>
-      <a class="dvpt" routerLink="/ressources">Ressources</a>
-      <a class="dvpt" routerLink="/evenements">Événements</a>
+<header class="header">
+  <div class="header-container">
+    <!-- Logo NCC -->
+    <div class="logo">
+      <img src="assets/img/logo-ncc.png" alt="NCC Formation" class="logo-img">
+      <div class="logo-text">
+        <h1>NCC Formation</h1>
+        <p>Former • Informer • Transformer</p>
+      </div>
     </div>
-    <div class="menudvptnum">
-      <a class="num" routerLink="/crypto">Crypto-monnaies</a>
-      <a class="num" routerLink="/formation">Formation</a>
-      <a class="num" routerLink="/numerique">Coaching</a>
+
+    <!-- Navigation Desktop -->
+    <nav class="nav-desktop">
+      <ul class="nav-list">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a></li>
+        <li><a routerLink="/formation" routerLinkActive="active">Formations</a></li>
+        <li><a routerLink="/coaching" routerLinkActive="active">Coaching</a></li>
+        <li><a routerLink="/evenements" routerLinkActive="active">Événements</a></li>
+        <li><a routerLink="/ressources" routerLinkActive="active">Ressources</a></li>
+        <li><a routerLink="/boutique" routerLinkActive="active">Boutique</a></li>
+        <li><a routerLink="/connexion" routerLinkActive="active" class="btn-connexion">Connexion</a></li>
+      </ul>
+    </nav>
+
+    <!-- Menu Mobile -->
+    <div class="nav-mobile">
+      <button class="menu-toggle" (click)="toggleMenu()">
+        <span class="hamburger"></span>
+      </button>
+      
+      <nav class="nav-mobile-menu" [class.active]="isMenuOpen">
+        <ul class="nav-mobile-list">
+          <li><a routerLink="/" (click)="closeMenu()">Accueil</a></li>
+          <li><a routerLink="/formation" (click)="closeMenu()">Formations</a></li>
+          <li><a routerLink="/coaching" (click)="closeMenu()">Coaching</a></li>
+          <li><a routerLink="/evenements" (click)="closeMenu()">Événements</a></li>
+          <li><a routerLink="/ressources" (click)="closeMenu()">Ressources</a></li>
+          <li><a routerLink="/boutique" (click)="closeMenu()">Boutique</a></li>
+          <li><a routerLink="/connexion" (click)="closeMenu()" class="btn-connexion">Connexion</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
-  <div class="connexion">
-    <a routerLink="/connexion">se connecter</a>
-    <a routerLink="/inscrire">s'inscrire</a>
-  </div>
-  <div class="dessous">
-    <div class="description-site">Espace reservé aux développement Personnel & Numérique</div>
   </div>
 </header>

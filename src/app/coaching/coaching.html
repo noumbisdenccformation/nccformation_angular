@@ -1,0 +1,128 @@
+<!-- Section Héro Coaching -->
+<section class="coaching-hero">
+  <div class="container">
+    <div class="coaching-hero-content">
+      <h1>Coaching Personnalisé</h1>
+      <p>Transformez votre vie avec un accompagnement sur mesure</p>
+      <p class="coaching-subtitle">
+        Nos experts vous accompagnent pour atteindre vos objectifs personnels et professionnels 
+        grâce à des méthodes éprouvées et un suivi personnalisé.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Section Services de Coaching -->
+<section class="coaching-services">
+  <div class="container">
+    <div class="section-title">
+      <h2>Nos Services de Coaching</h2>
+      <p>Choisissez le type d'accompagnement qui correspond à vos besoins</p>
+    </div>
+    
+    <div class="coaching-grid">
+      <div class="coaching-card" *ngFor="let service of coachingServices">
+        <div class="coaching-icon">
+          <i [class]="service.icon"></i>
+        </div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+        <div class="coaching-price">{{ service.price }}</div>
+        <button class="btn btn-primary" (click)="submitForm()">Demander un coaching</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Formulaire de Demande -->
+<section class="coaching-form-section">
+  <div class="container">
+    <div class="form-container">
+      <h2>Demande de Coaching</h2>
+      <p>Remplissez ce formulaire pour nous présenter vos besoins et objectifs</p>
+      
+      <form class="coaching-form" (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <label for="name">Nom complet *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Téléphone</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        
+        <div class="form-group">
+          <label for="service">Type de coaching souhaité *</label>
+          <select id="service" name="service" required>
+            <option value="">Sélectionnez un service</option>
+            <option value="personnel">Coaching Personnel</option>
+            <option value="professionnel">Coaching Professionnel</option>
+            <option value="entrepreneurial">Coaching Entrepreneurial</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="objectives">Vos objectifs *</label>
+          <textarea id="objectives" name="objectives" rows="4" required 
+                    placeholder="Décrivez vos objectifs et ce que vous souhaitez accomplir..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="availability">Disponibilités</label>
+          <textarea id="availability" name="availability" rows="3" 
+                    placeholder="Indiquez vos disponibilités pour les sessions..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-large">Envoyer ma demande</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Section Témoignages -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Témoignages de nos coachés</h2>
+      <p>Découvrez les retours de nos clients satisfaits</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <p>"Le coaching avec NCC Formation m'a permis de clarifier mes objectifs et de prendre confiance en moi. Je recommande !"</p>
+        </div>
+        <div class="testimonial-author">
+          <strong>Marie D.</strong>
+          <span>Entrepreneuse</span>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <p>"Un accompagnement professionnel et bienveillant qui m'a aidé à surmonter mes blocages et à avancer dans ma carrière."</p>
+        </div>
+        <div class="testimonial-author">
+          <strong>Thomas L.</strong>
+          <span>Manager</span>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <p>"Grâce au coaching, j'ai pu lancer mon entreprise avec plus de sérénité et de méthode. Un vrai plus !"</p>
+        </div>
+        <div class="testimonial-author">
+          <strong>Sophie M.</strong>
+          <span>Fondatrice startup</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
