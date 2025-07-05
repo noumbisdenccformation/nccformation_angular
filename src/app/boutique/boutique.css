@@ -1,0 +1,66 @@
+/* Styles pour la page Boutique */
+
+.Boutique {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.Boutique h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.Boutique p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* Animation de galerie pour Boutique */
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  animation: scroll 40s infinite linear;
+  margin: 2rem 0;
+}
+
+.gallery img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  cursor: pointer;
+  box-shadow: 15px 4px 18px -5px rgba(0, 0, 0, 0.68);
+  transition: transform 0.5s ease-in-out;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Couleur de fond spécifique pour Boutique */
+body {
+  background-color: #f8f9fa;
+}
+
+.Boutique {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+} 

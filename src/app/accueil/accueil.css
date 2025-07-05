@@ -1,0 +1,295 @@
+/* root to color */
+:root{
+    --color: rgb(31, 159, 221);
+    --complementary-color: #DD5D1F;
+    --nav-ul-li-a: #F0F8FF;
+    --bg-hero: #d9b7b7;
+   
+}
+
+body{
+    overflow-x: hidden;
+}
+
+/*style lié à gallery */
+
+/*animation de slide*/
+
+.couvre-gal{
+    margin: 0;
+    height: 50vh;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    background-color:  maroon;
+  }
+  
+  .gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    animation: scroll 60s infinite linear;
+    overflow: hidden;
+  }
+  
+  .gallery img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    cursor: pointer;
+    box-shadow: 15px 4px 18px -5px rgba(0, 0, 0, 0.68);
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+  
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+/*fin de animation gallerie */
+
+/*animation boule de neige*/
+
+.couvre-container {
+    position: relative;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 80vh;
+}
+
+.container {
+    position: static;
+    height: auto;
+    width: auto;
+    border-radius: 0;
+    margin: 0 auto;
+    box-shadow: none;
+    background: none;
+    border: none;
+    z-index: auto;
+    overflow: visible;
+    top: 0;
+}
+
+.snow{
+    height: 40px;
+    width: 235px;
+    background-color: white;
+    position: relative;
+    left:60px;
+    top:280px;
+    border-radius: 8px;
+}
+.tree1{
+    height: 0;
+    width: 0;
+    border-bottom: 120px solid #5b6b09;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    position: relative;
+    left:70px;
+    top:120px;
+}
+.tree2{
+    height: 0;
+    width: 0;
+    border-bottom: 90px solid #718710;
+    border-left: 24px solid transparent;
+    border-right: 24px solid transparent;
+    position: relative;
+    left:90px;
+    top:30px;
+}
+.house {
+    position: static;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    margin: 0 auto;
+    display: block;
+    margin-top: 120px;
+}
+.roof1{
+    height: 60px;
+    width: 12px;
+    background-color: #7e110f;
+    transform: skew(30deg);
+    -webkit-transform: skew(30deg);
+    position: relative;
+    left:112px;
+    bottom:18.5px;
+}
+.wall1{
+    height: 0;
+    width: 0;
+    border-bottom: 53px solid #c44e0e;
+    border-left:30px solid transparent;
+    border-right:31px solid transparent;
+    position: relative;
+    bottom: 75px;
+    left:68px;
+}
+.wall2{
+    height:70px;
+    background-color: #c44e0e;
+    width: 150px;
+    position: relative; 
+    bottom:75px;
+    right: 21px;
+}
+.wall3{
+    background-color: #b40f0c;
+    height: 60px;
+    width: 105px;
+    transform: skew(-30deg);
+    -webkit-transform: skew(-30deg);
+    position: relative;
+    bottom:201.5px;
+    right: 16.5px;
+}
+.light{
+    background-color: #ef7421;
+    width: 90px;
+    height: 50px;
+    position: relative;
+    top:20px;
+}
+.b1{
+    background-color: #460701;
+    height: 60px;
+    width: 3px;
+    position: relative;
+    left:9px;
+}
+.b2{
+    background-color: #460701;
+    height:6px;
+    width:10px;
+    position: relative;
+    bottom:6px;  
+}
+.b4{
+    background-color: #460701;
+    height:59px; 
+    width: 3px;
+    position: relative;
+    left:103px;
+    bottom:5px;
+}
+.b3{
+    background-color: #7b0f0c;
+    height: 5px;
+    width: 106px;
+    position: relative;
+    top: 55px;
+}
+.w1,.w2{
+    background-color: #700205;
+    height: 30px;
+    width:25px;
+    position:relative; 
+}
+.w1{
+    top:5px;
+    left:20px;
+}
+.w2{
+    bottom:25px;
+    left:50px;
+}
+.window{
+    background-color:#89c6c5;
+    height: 23px;
+    width: 19px; 
+    border:2px solid white;
+    position: relative;
+    top:2px;
+    left:3px;
+}
+.glass{
+    height: 0;
+    width: 0;
+    border-top:23px solid rgba(255,255,255,0.5);
+    border-right: 17px solid transparent;
+}
+.w3{
+    background-color: #982c19;
+    height:18px;
+    width: 16px;
+    position: relative;
+    top:40px;
+    right: 3px;
+    z-index: 1; 
+}
+.window1{
+    background-color:#89c6c5;
+    height: 10px;
+    width: 10px;
+    border:1.3px solid white;
+    position: relative;
+    top:2.5px;
+}
+.glass1{
+    height: 0;
+    width: 0;
+    border-top:10px solid rgba(255,255,255,0.3);
+    border-right: 10px solid transparent;
+}
+.door{
+    background-color: #7f1414;
+    height: 40px;
+    width: 20px;
+    position: relative;
+    bottom:20px;
+    left:112px;
+    border-right: 2px solid #ef2021;
+}
+
+.snowfall {
+    background: url(https://i.imgur.com/T0mBFg2.png);
+    background-size: 350px 200px;
+    background-repeat: repeat;
+    height: 350px;
+    width: 350px;
+    position: relative;
+    bottom: 800px;
+    border-radius: 50%;
+    animation: snowfall 5s linear forwards infinite;
+    -webkit-animation: snowfall 5s linear forwards infinite;
+    pointer-events: none;
+    z-index: 1002;
+}
+.cover {
+    background-color: rgba(255,255,255,0.2);
+    height: 350px;
+    width: 350px;
+    border-radius: 50%;
+    position: relative;
+    bottom: 1200px;
+    z-index: 1003;
+    pointer-events: none;
+    box-shadow: 0 0 40px 10px rgba(255,255,255,0.15) inset;
+}
+
+/* ... existing code ... */
