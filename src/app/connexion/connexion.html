@@ -1,4 +1,109 @@
-<div class="Connexion">
-  <h2>Connexion</h2>
-  <p>Page de connexion.</p>
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="logo-section">
+        <img src="assets/img/logo-ncc.png" alt="NCC Formation" class="auth-logo">
+        <h1>Connexion</h1>
+        <p>Accédez à votre espace de formation</p>
+      </div>
+    </div>
+
+    <form class="auth-form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            [(ngModel)]="email"
+            placeholder="votre@email.com"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            id="password" 
+            name="password" 
+            [(ngModel)]="password"
+            placeholder="Votre mot de passe"
+            required
+          >
+          <button 
+            type="button" 
+            class="password-toggle"
+            (click)="togglePassword()"
+          >
+            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-options">
+        <label class="checkbox-container">
+          <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe">
+          <span class="checkmark"></span>
+          Se souvenir de moi
+        </label>
+        <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Se connecter</span>
+        <span *ngIf="isLoading" class="loading">
+          <i class="fas fa-spinner fa-spin"></i>
+          Connexion...
+        </span>
+      </button>
+    </form>
+
+    <div class="auth-divider">
+      <span>ou</span>
+    </div>
+
+    <div class="social-login">
+      <button class="btn-social btn-google">
+        <i class="fab fa-google"></i>
+        Continuer avec Google
+      </button>
+      <button class="btn-social btn-facebook">
+        <i class="fab fa-facebook-f"></i>
+        Continuer avec Facebook
+      </button>
+    </div>
+
+    <div class="auth-footer">
+      <p>Pas encore de compte ? 
+        <a routerLink="/inscrire" class="link-signup">Créer un compte</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="auth-illustration">
+    <div class="illustration-content">
+      <h2>Bienvenue chez NCC Formation</h2>
+      <p>Accédez à nos formations exclusives, ressources pédagogiques et suivez votre progression en temps réel.</p>
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Formations certifiantes</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-users"></i>
+          <span>Communauté active</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-chart-line"></i>
+          <span>Suivi de progression</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
