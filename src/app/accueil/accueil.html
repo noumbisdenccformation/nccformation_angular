@@ -1,116 +1,289 @@
-<!-- Hero Principal -->
-<section class="hero-main">
-  <div class="hero-background">
-    <div class="hero-overlay"></div>
-    <img src="assets/img/Composition2.png" alt="NCC Formation Hero" class="hero-bg-img">
-  </div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span>🚀 Nouvelle plateforme de formation</span>
+<div class="main-scroll-zone">
+  <div class="couvre-gal">
+    <div class="gallery">
+      <img *ngFor="let fruit of fruits" [src]="fruit.imageUrl" [alt]="fruit.title">
+    </div>
+    <div class="container">
+      <div class="snow"></div>
+      <div class="tree1"></div>
+      <div class="tree2"></div>
+      <div class="snowfall"></div>
+      <div class="cover"></div>
+      <div class="bottom">
+        <div class="bt1"></div>
+        <div class="bt2"></div>
       </div>
-      <h1 class="hero-title">
-        Transformez votre <span class="text-gradient">avenir professionnel</span> avec NCC Formation
-      </h1>
-      <p class="hero-subtitle">
-        Rejoignez plus de 2500 étudiants qui ont déjà transformé leur carrière grâce à nos formations certifiantes et notre accompagnement personnalisé.
-      </p>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-number">2500+</span>
-          <span class="stat-label">Étudiants formés</span>
+      <div class="fence">
+        <div class="fn1">
+          <div class="screw"></div>
         </div>
-        <div class="stat-item">
-          <span class="stat-number">95%</span>
-          <span class="stat-label">Taux de réussite</span>
+        <div class="fn2">
+          <div class="screw"></div>
         </div>
-        <div class="stat-item">
-          <span class="stat-number">4.9/5</span>
-          <span class="stat-label">Satisfaction</span>
+        <div class="fn3">
+          <div class="screw"></div>
         </div>
-      </div>
-      <div class="hero-buttons">
-        <a routerLink="/formation" class="btn btn-primary btn-large">
-          <i class="fas fa-play"></i>
-          Commencer maintenant
-        </a>
-        <a routerLink="/coaching" class="btn btn-outline btn-large">
-          <i class="fas fa-calendar"></i>
-          Consultation gratuite
-        </a>
+        <div class="stck"></div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- Section Domaines d'Expertise -->
-<section class="expertise-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Nos Domaines d'Excellence</h2>
-      <p>Des formations complètes pour maîtriser les technologies d'aujourd'hui et de demain</p>
+</div>
+<section id="hero">
+  <div id="accueil">
+    <div class="seeWork">
+      <a href="#projects" class="myWork">Nos activités!</a>
+      <a href="#projects" class="down"><div class="scroll-down"></div></a>
+      
+      <div class="Boutique enhanced-section">
+        <div class="section-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <h2>🛍️ Découvrez notre Boutique Premium</h2>
+        <p>Plongez dans notre <strong>collection exclusive</strong> où chaque produit est conçu pour allier qualité et innovation. De la mode aux gadgets technologiques, nous offrons une variété de choix pour satisfaire toutes vos envies.</p>
+        <div class="section-features">
+          <span class="feature-tag">✨ Produits Premium</span>
+          <span class="feature-tag">🚚 Livraison Rapide</span>
+          <span class="feature-tag">📞 Support 24/7</span>
+        </div>
+        <a routerLink="/boutique" class="section-cta">
+          Explorer la boutique <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="Ressources enhanced-section">
+        <div class="section-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <h2>📚 Bibliothèque de Ressources Experts</h2>
+        <p>Accédez à une <strong>mine d'informations</strong> et de conseils pratiques grâce à notre section Ressources. Guides détaillés, tutoriels pas à pas, et conseils d'experts pour réussir vos projets.</p>
+        <div class="section-features">
+          <span class="feature-tag">🎯 Guides Experts</span>
+          <span class="feature-tag">🎥 Tutoriels Vidéo</span>
+          <span class="feature-tag">🔄 Mises à jour</span>
+        </div>
+        <a routerLink="/ressources" class="section-cta">
+          Accéder aux ressources <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="Evenements enhanced-section">
+        <div class="section-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <h2>🎆 Événements & Networking</h2>
+        <p>Restez informé des <strong>événements majeurs</strong> à ne pas manquer. Participez à des conférences, ateliers et webinaires animés par des experts de renom pour élargir vos horizons.</p>
+        <div class="section-features">
+          <span class="feature-tag">🎤 Conférences</span>
+          <span class="feature-tag">🤝 Networking</span>
+          <span class="feature-tag">🎖️ Certificats</span>
+        </div>
+        <a routerLink="/evenements" class="section-cta">
+          Voir les événements <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="Crypto enhanced-section">
+        <div class="section-icon">
+          <i class="fab fa-bitcoin"></i>
+        </div>
+        <h2>₿ Crypto-monnaies & Trading Pro</h2>
+        <p>Plongez dans l'univers <strong>fascinant des crypto-monnaies</strong>. Analyses approfondies des tendances, formations pour tous niveaux et stratégies de trading pour naviguer avec confiance.</p>
+        <div class="section-features">
+          <span class="feature-tag">📈 Analyses Marché</span>
+          <span class="feature-tag">💰 Stratégies Trading</span>
+          <span class="feature-tag">🎯 Formations Pro</span>
+        </div>
+        <a routerLink="/crypto" class="section-cta">
+          Explorer crypto <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="Web enhanced-section">
+        <div class="section-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <h2>💻 Solutions Web sur Mesure</h2>
+        <p>Découvrez nos <strong>services de développement web</strong> adaptés à vos besoins. Sites modernes, optimisation SEO, et solutions complètes pour transformer vos idées en réalité digitale.</p>
+        <div class="section-features">
+          <span class="feature-tag">🎨 Design Moderne</span>
+          <span class="feature-tag">🔍 SEO Optimisé</span>
+          <span class="feature-tag">📱 Responsive</span>
+        </div>
+        <a routerLink="/web" class="section-cta">
+          Découvrir nos services <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="Formation enhanced-section">
+        <div class="section-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h2>🎓 Formations Certifiantes</h2>
+        <p>Rejoignez nos <strong>formations en numérique</strong> et développez vos compétences avec des experts. Programmes immersifs couvrant le développement web, marketing digital, et gestion de projets.</p>
+        <div class="section-features">
+          <span class="feature-tag">🎯 Experts Certifiés</span>
+          <span class="feature-tag">🏆 Certificats Reconnus</span>
+          <span class="feature-tag">👥 Réseau Pro</span>
+        </div>
+        <a routerLink="/formation" class="section-cta">
+          Voir les formations <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
     </div>
     
-    <div class="expertise-grid">
-      <div class="expertise-card" data-aos="fade-up">
-        <div class="card-image">
-          <img src="assets/img/boutique1.png" alt="E-commerce & Boutique">
-          <div class="card-overlay">
+    <div class="don enhanced-don">
+      <div class="don-icon">
+        <i class="fas fa-heart"></i>
+      </div>
+      <h3>🚀 Soutenez Notre Mission</h3>
+      <p>Les contenus de ce site sont à <strong>80% gratuits</strong>. Ils ont demandé énormément de travail et rivalisent avec les meilleurs cours payants. Votre soutien nous aide à maintenir cette qualité et à créer encore plus de contenu.</p>
+      <div class="don-features">
+        <span class="don-tag">✨ Contenu Premium</span>
+        <span class="don-tag">🎆 Mises à jour</span>
+        <span class="don-tag">🚀 Nouveaux Cours</span>
+      </div>
+      <button class="don-btn">
+        <i class="fab fa-paypal"></i>
+        Faire un don sécurisé
+      </button>
+      <p class="don-thanks">Merci par avance pour votre soutien ! 🙏</p>
+    </div>
+  </div>
+  <div class="fas fa-cog nut1"></div>
+  <div class="fas fa-cog nut2"></div>
+</section>
+
+<!-- Section Nos Activités Améliorée -->
+<section class="activities-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Nos Activités</h2>
+      <p>Découvrez notre gamme complète de services pour votre développement professionnel</p>
+    </div>
+    
+    <div class="activities-grid">
+      <div class="activity-card boutique-card">
+        <div class="activity-image">
+          <img src="assets/img/boutique1.png" alt="Boutique NCC">
+          <div class="activity-overlay">
             <i class="fas fa-shopping-cart"></i>
           </div>
         </div>
-        <div class="card-content">
-          <h3>E-commerce & Boutique</h3>
-          <p>Créez et gérez votre boutique en ligne avec nos outils et formations spécialisées. De la conception à la vente, maîtrisez tous les aspects du commerce électronique.</p>
-          <div class="card-features">
-            <span class="feature-tag">Shopify</span>
-            <span class="feature-tag">WooCommerce</span>
-            <span class="feature-tag">Marketing</span>
+        <div class="activity-content">
+          <h3>Découvrez notre Boutique</h3>
+          <p>Plongez dans notre collection exclusive où chaque produit est conçu pour allier qualité et innovation. De la mode aux gadgets technologiques, nous offrons une variété de choix pour satisfaire toutes vos envies.</p>
+          <div class="activity-features">
+            <span class="feature-badge">Produits Premium</span>
+            <span class="feature-badge">Livraison Rapide</span>
+            <span class="feature-badge">Support Client</span>
           </div>
-          <a routerLink="/boutique" class="card-link">
-            Découvrir <i class="fas fa-arrow-right"></i>
+          <a routerLink="/boutique" class="activity-btn">
+            Explorer la boutique <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
 
-      <div class="expertise-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="card-image">
-          <img src="assets/img/crypto1.png" alt="Crypto & Blockchain">
-          <div class="card-overlay">
+      <div class="activity-card resources-card">
+        <div class="activity-image">
+          <img src="assets/img/ressource1.png" alt="Ressources NCC">
+          <div class="activity-overlay">
+            <i class="fas fa-book"></i>
+          </div>
+        </div>
+        <div class="activity-content">
+          <h3>Bibliothèque de Ressources</h3>
+          <p>Accédez à une mine d'informations et de conseils pratiques. Que vous recherchiez des articles de fond, des guides détaillés ou des tutoriels pas à pas, nous avons ce qu'il vous faut.</p>
+          <div class="activity-features">
+            <span class="feature-badge">Guides Experts</span>
+            <span class="feature-badge">Tutoriels Vidéo</span>
+            <span class="feature-badge">Mises à jour</span>
+          </div>
+          <a routerLink="/ressources" class="activity-btn">
+            Accéder aux ressources <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="activity-card events-card">
+        <div class="activity-image">
+          <img src="assets/img/evenements1.png" alt="Événements NCC">
+          <div class="activity-overlay">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+        </div>
+        <div class="activity-content">
+          <h3>Événements & Communauté</h3>
+          <p>Restez informé des événements majeurs à ne pas manquer. Participez à des conférences, ateliers et webinaires animés par des experts de renom.</p>
+          <div class="activity-features">
+            <span class="feature-badge">Conférences</span>
+            <span class="feature-badge">Networking</span>
+            <span class="feature-badge">Experts</span>
+          </div>
+          <a routerLink="/evenements" class="activity-btn">
+            Voir les événements <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="activity-card crypto-card">
+        <div class="activity-image">
+          <img src="assets/img/crypto1.png" alt="Crypto NCC">
+          <div class="activity-overlay">
             <i class="fab fa-bitcoin"></i>
           </div>
         </div>
-        <div class="card-content">
-          <h3>Crypto & Blockchain</h3>
-          <p>Plongez dans l'univers des crypto-monnaies et de la blockchain. Apprenez le trading, l'investissement et les technologies décentralisées.</p>
-          <div class="card-features">
-            <span class="feature-tag">Bitcoin</span>
-            <span class="feature-tag">Trading</span>
-            <span class="feature-tag">DeFi</span>
+        <div class="activity-content">
+          <h3>Crypto-monnaies & Trading</h3>
+          <p>Plongez dans l'univers fascinant des crypto-monnaies. Nous offrons des analyses approfondies des tendances du marché et des formations pour tous les niveaux.</p>
+          <div class="activity-features">
+            <span class="feature-badge">Analyses Marché</span>
+            <span class="feature-badge">Trading</span>
+            <span class="feature-badge">Formations</span>
           </div>
-          <a routerLink="/crypto" class="card-link">
-            Explorer <i class="fas fa-arrow-right"></i>
+          <a routerLink="/crypto" class="activity-btn">
+            Explorer crypto <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
 
-      <div class="expertise-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="card-image">
+      <div class="activity-card web-card">
+        <div class="activity-image">
           <img src="assets/img/web1.png" alt="Développement Web">
-          <div class="card-overlay">
+          <div class="activity-overlay">
             <i class="fas fa-code"></i>
           </div>
         </div>
-        <div class="card-content">
-          <h3>Développement Web</h3>
-          <p>Maîtrisez les technologies web modernes et créez des applications performantes. Du front-end au back-end, devenez un développeur complet.</p>
-          <div class="card-features">
-            <span class="feature-tag">React</span>
-            <span class="feature-tag">Angular</span>
-            <span class="feature-tag">Node.js</span>
+        <div class="activity-content">
+          <h3>Solutions Web sur Mesure</h3>
+          <p>Découvrez nos services de développement web adaptés à vos besoins. De la conception de sites modernes à l'optimisation SEO, nous transformons vos idées en réalité.</p>
+          <div class="activity-features">
+            <span class="feature-badge">Sites Modernes</span>
+            <span class="feature-badge">SEO</span>
+            <span class="feature-badge">Responsive</span>
           </div>
-          <a routerLink="/web" class="card-link">
-            Apprendre <i class="fas fa-arrow-right"></i>
+          <a routerLink="/web" class="activity-btn">
+            Découvrir web <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="activity-card formation-card">
+        <div class="activity-image">
+          <img src="assets/img/formations1.png" alt="Formations NCC">
+          <div class="activity-overlay">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+        </div>
+        <div class="activity-content">
+          <h3>Formations Numériques</h3>
+          <p>Rejoignez nos formations en numérique et développez vos compétences avec des experts. Nous proposons une variété de cours couvrant le développement web, le marketing digital et plus.</p>
+          <div class="activity-features">
+            <span class="feature-badge">Experts</span>
+            <span class="feature-badge">Certificats</span>
+            <span class="feature-badge">Pratique</span>
+          </div>
+          <a routerLink="/formation" class="activity-btn">
+            Voir formations <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
