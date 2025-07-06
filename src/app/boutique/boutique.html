@@ -1,4 +1,135 @@
-<div class="Boutique">
-  <h2>Boutique</h2>
-  <p>Bienvenue dans la boutique !</p>
-</div> 
+<!-- Hero Section -->
+<section class="hero-boutique">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Boutique NCC Formation</h1>
+      <p>Découvrez nos produits exclusifs pour accélérer votre réussite</p>
+      <div class="hero-features">
+        <div class="feature">
+          <i class="fas fa-shipping-fast"></i>
+          <span>Livraison instantanée</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <span>Paiement sécurisé</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-headset"></i>
+          <span>Support 24/7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Filter -->
+<section class="categories-filter">
+  <div class="container">
+    <div class="filter-buttons">
+      <button 
+        *ngFor="let category of categories" 
+        [class.active]="selectedCategory === category"
+        (click)="filterByCategory(category)"
+        class="filter-btn">
+        {{category}}
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section class="products-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Nos Produits</h2>
+      <p>Sélection premium pour votre développement professionnel</p>
+    </div>
+    
+    <div class="products-grid">
+      <div *ngFor="let product of getFilteredProducts()" class="product-card">
+        <div class="product-image">
+          <img [src]="product.image" [alt]="product.name">
+          <div class="product-badge" [ngClass]="product.badge.toLowerCase()">
+            {{product.badge}}
+          </div>
+          <div class="discount-badge" *ngIf="product.originalPrice > product.price">
+            -{{getDiscount(product)}}%
+          </div>
+        </div>
+        
+        <div class="product-content">
+          <div class="product-category">{{product.category}}</div>
+          <h3 class="product-title">{{product.name}}</h3>
+          <p class="product-description">{{product.description}}</p>
+          
+          <div class="product-rating">
+            <div class="stars">
+              <span *ngFor="let star of [1,2,3,4,5]" 
+                    [class.filled]="star <= product.rating">★</span>
+            </div>
+            <span class="rating-text">({{product.reviews}} avis)</span>
+          </div>
+          
+          <div class="product-price">
+            <span class="current-price">{{product.price}}€</span>
+            <span *ngIf="product.originalPrice > product.price" 
+                  class="original-price">{{product.originalPrice}}€</span>
+          </div>
+          
+          <button class="btn-add-cart" (click)="addToCart(product)">
+            <i class="fas fa-shopping-cart"></i>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials-section">
+  <div class="container">
+    <h2>Ce que disent nos clients</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"Les formations NCC ont transformé ma carrière. Un investissement qui en vaut vraiment la peine !"</p>
+        </div>
+        <div class="testimonial-author">
+          <img src="assets/img/avatar1.jpg" alt="Client">
+          <div>
+            <strong>Marie Dubois</strong>
+            <span>Développeuse Web</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"Le pack complet m'a permis d'acquérir toutes les compétences nécessaires pour lancer mon business."</p>
+        </div>
+        <div class="testimonial-author">
+          <img src="assets/img/avatar2.jpg" alt="Client">
+          <div>
+            <strong>Pierre Martin</strong>
+            <span>Entrepreneur</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-boutique">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Besoin d'aide pour choisir ?</h2>
+      <p>Nos experts sont là pour vous conseiller</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary">Demander un conseil</button>
+        <button class="btn btn-secondary">Voir le panier ({{cart.length}})</button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,58 +1,84 @@
-/* Page Coaching NCC Formation */
-
-/* Section Héro Coaching */
-.coaching-hero {
+.hero-coaching {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 100px 0 80px;
+  padding: 100px 0;
   text-align: center;
 }
 
-.coaching-hero-content h1 {
-  font-size: 3rem;
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
   font-weight: 700;
-  margin-bottom: 20px;
 }
 
-.coaching-hero-content p {
+.hero-content p {
   font-size: 1.3rem;
-  margin-bottom: 15px;
+  margin-bottom: 3rem;
   opacity: 0.9;
 }
 
-.coaching-subtitle {
-  font-size: 1.1rem !important;
-  max-width: 800px;
-  margin: 0 auto !important;
-  line-height: 1.6;
-  opacity: 0.8 !important;
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 2rem;
 }
 
-/* Section Services de Coaching */
-.coaching-services {
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat .number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #FFD700;
+}
+
+.stat .label {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.services-section {
   padding: 80px 0;
   background: #f8f9fa;
 }
 
-.coaching-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
-  margin-top: 50px;
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
 }
 
-.coaching-card {
+.section-header h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
   background: white;
-  padding: 40px 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  border-radius: 20px;
   text-align: center;
-  transition: all 0.3s ease;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-.coaching-card::before {
+.service-card:hover {
+  transform: translateY(-10px);
+}
+
+.service-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -60,89 +86,181 @@
   right: 0;
   height: 4px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  transform: scaleX(0);
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: #667eea;
+  margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.service-details {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+}
+
+.detail i {
+  color: #667eea;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.features-list i {
+  color: #4CAF50;
+  font-size: 0.8rem;
+}
+
+.btn-service {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  width: 100%;
+}
+
+.btn-service:hover {
+  transform: scale(1.05);
+}
+
+.coaches-section {
+  padding: 80px 0;
+}
+
+.coaches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.coach-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
 }
 
-.coaching-card:hover::before {
-  transform: scaleX(1);
+.coach-card:hover {
+  transform: translateY(-5px);
 }
 
-.coaching-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+.coach-image {
+  height: 250px;
+  overflow: hidden;
 }
 
-.coaching-icon {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 25px;
-  font-size: 2rem;
-  color: white;
-  transition: all 0.3s ease;
+.coach-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.coaching-card:hover .coaching-icon {
-  transform: scale(1.1) rotate(5deg);
+.coach-info {
+  padding: 2rem;
+  text-align: center;
 }
 
-.coaching-card h3 {
-  font-size: 1.5rem;
-  color: #2c3e50;
-  margin-bottom: 15px;
-  font-weight: 600;
+.coach-info h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 0.5rem;
 }
 
-.coaching-card p {
-  color: #7f8c8d;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.coaching-price {
-  font-size: 1.2rem;
-  font-weight: 600;
+.specialty {
   color: #667eea;
-  margin-bottom: 25px;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
 }
 
-/* Section Formulaire */
-.coaching-form-section {
+.coach-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.coach-stats .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coach-stats .label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 0.2rem;
+}
+
+.coach-stats .value {
+  font-weight: 600;
+  color: #333;
+}
+
+.form-section {
   padding: 80px 0;
-  background: white;
-}
-
-.form-container {
-  max-width: 600px;
-  margin: 0 auto;
   background: #f8f9fa;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.form-container h2 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 10px;
-  font-size: 2rem;
+.form-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
-.form-container > p {
+.form-header {
   text-align: center;
-  color: #7f8c8d;
-  margin-bottom: 30px;
+  margin-bottom: 3rem;
+}
+
+.form-header h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
 }
 
 .coaching-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
 }
 
 .form-group {
@@ -152,18 +270,18 @@
 
 .form-group label {
   font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 8px;
+  color: #333;
+  margin-bottom: 0.5rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   padding: 12px 15px;
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease;
 }
 
 .form-group input:focus,
@@ -171,119 +289,147 @@
 .form-group textarea:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.form-group textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.btn-large {
-  padding: 15px 30px;
+.btn-submit {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 18px 30px;
+  border-radius: 25px;
   font-size: 1.1rem;
-  margin-top: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-top: 1rem;
 }
 
-/* Section Témoignages */
+.btn-submit:hover {
+  transform: scale(1.02);
+}
+
 .testimonials-section {
   padding: 80px 0;
-  background: #f8f9fa;
 }
 
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
 }
 
-.testimonial-card {
+.testimonial {
   background: white;
-  padding: 30px;
+  padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.testimonial-card::before {
-  content: '"';
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 4rem;
-  color: #667eea;
-  opacity: 0.3;
-  font-family: serif;
-}
-
-.testimonial-content {
-  margin-bottom: 20px;
-  padding-left: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .testimonial-content p {
   font-style: italic;
-  color: #2c3e50;
+  color: #666;
   line-height: 1.6;
-  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
 }
 
 .testimonial-author {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding-left: 30px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.testimonial-author strong {
-  color: #2c3e50;
-  font-size: 1.1rem;
+.author-info strong {
+  display: block;
+  color: #333;
+  font-size: 1rem;
 }
 
-.testimonial-author span {
-  color: #7f8c8d;
+.author-info span {
+  color: #666;
   font-size: 0.9rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .coaching-hero-content h1 {
-    font-size: 2.2rem;
-  }
-  
-  .coaching-hero-content p {
-    font-size: 1.1rem;
-  }
-  
-  .coaching-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .form-container {
-    margin: 0 20px;
-    padding: 30px 20px;
-  }
-  
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-  }
+.rating {
+  color: #FFD700;
+  font-size: 1rem;
 }
 
-@media (max-width: 480px) {
-  .coaching-hero {
-    padding: 80px 0 60px;
+.cta-coaching {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.cta-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: white;
+  color: #4facfe;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero-stats {
+    flex-direction: column;
+    gap: 2rem;
   }
   
-  .coaching-hero-content h1 {
-    font-size: 1.8rem;
+  .services-grid {
+    grid-template-columns: 1fr;
   }
   
-  .coaching-card {
-    padding: 30px 20px;
+  .form-row {
+    grid-template-columns: 1fr;
   }
   
-  .form-container {
-    padding: 20px 15px;
+  .coaches-grid {
+    grid-template-columns: 1fr;
   }
-} 
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

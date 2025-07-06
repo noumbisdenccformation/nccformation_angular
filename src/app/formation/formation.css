@@ -1,66 +1,312 @@
-/* Styles pour la page Formation */
-
-.Formation {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.hero-formation {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 100px 0;
   text-align: center;
 }
 
-.Formation h2 {
-  color: #333;
+.hero-content h1 {
+  font-size: 3.5rem;
   margin-bottom: 1rem;
-  font-size: 2rem;
+  font-weight: 700;
 }
 
-.Formation p {
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 2rem;
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat .number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #FFD700;
+}
+
+.stat .label {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.categories-section {
+  padding: 80px 0;
+  background: #f8f9fa;
+}
+
+.categories-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.category-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+}
+
+.category-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.formations-section {
+  padding: 80px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.formations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.formation-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.formation-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.price-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #FF6B6B;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 25px;
+  font-weight: 700;
   font-size: 1.1rem;
 }
 
-/* Animation de galerie pour Formation */
-.gallery {
+.card-content {
+  padding: 2rem;
+}
+
+.card-header {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
-  max-width: 1200px;
-  animation: scroll 40s infinite linear;
-  margin: 2rem 0;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
 }
 
-.gallery img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
+.card-header h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin: 0;
+  flex: 1;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stars {
+  color: #FFD700;
+}
+
+.description {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.card-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.meta-item i {
+  color: #667eea;
+}
+
+.features {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.feature-tag {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.instructor {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.btn-enroll {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 15px 4px 18px -5px rgba(0, 0, 0, 0.68);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.2s ease;
 }
 
-.gallery img:hover {
+.btn-enroll:hover {
   transform: scale(1.05);
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(100%);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
+.cta-formation {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
 }
 
-/* Couleur de fond spécifique pour Formation */
-body {
-  background-color: #e8f5e8;
+.cta-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
-.Formation {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-} 
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: white;
+  color: #4facfe;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero-stats {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .formations-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

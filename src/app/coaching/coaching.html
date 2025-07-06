@@ -1,128 +1,220 @@
-<!-- Section Héro Coaching -->
-<section class="coaching-hero">
+<!-- Hero Section -->
+<section class="hero-coaching">
   <div class="container">
-    <div class="coaching-hero-content">
+    <div class="hero-content">
       <h1>Coaching Personnalisé</h1>
       <p>Transformez votre vie avec un accompagnement sur mesure</p>
-      <p class="coaching-subtitle">
-        Nos experts vous accompagnent pour atteindre vos objectifs personnels et professionnels 
-        grâce à des méthodes éprouvées et un suivi personnalisé.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- Section Services de Coaching -->
-<section class="coaching-services">
-  <div class="container">
-    <div class="section-title">
-      <h2>Nos Services de Coaching</h2>
-      <p>Choisissez le type d'accompagnement qui correspond à vos besoins</p>
-    </div>
-    
-    <div class="coaching-grid">
-      <div class="coaching-card" *ngFor="let service of coachingServices">
-        <div class="coaching-icon">
-          <i [class]="service.icon"></i>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="number">500+</span>
+          <span class="label">Clients accompagnés</span>
         </div>
-        <h3>{{ service.title }}</h3>
-        <p>{{ service.description }}</p>
-        <div class="coaching-price">{{ service.price }}</div>
-        <button class="btn btn-primary" (click)="submitForm()">Demander un coaching</button>
+        <div class="stat">
+          <span class="number">95%</span>
+          <span class="label">Taux de satisfaction</span>
+        </div>
+        <div class="stat">
+          <span class="number">3</span>
+          <span class="label">Experts certifiés</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Section Formulaire de Demande -->
-<section class="coaching-form-section">
+<!-- Services Section -->
+<section class="services-section">
   <div class="container">
-    <div class="form-container">
-      <h2>Demande de Coaching</h2>
-      <p>Remplissez ce formulaire pour nous présenter vos besoins et objectifs</p>
+    <div class="section-header">
+      <h2>Nos Services de Coaching</h2>
+      <p>Choisissez le type d'accompagnement qui correspond à vos besoins</p>
+    </div>
+    
+    <div class="services-grid">
+      <div *ngFor="let service of coachingServices" class="service-card">
+        <div class="service-icon">
+          <i [class]="service.icon"></i>
+        </div>
+        <h3>{{service.title}}</h3>
+        <p>{{service.description}}</p>
+        
+        <div class="service-details">
+          <div class="detail">
+            <i class="fas fa-clock"></i>
+            <span>{{service.duration}}</span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-euro-sign"></i>
+            <span>{{service.price}}€</span>
+          </div>
+        </div>
+        
+        <ul class="features-list">
+          <li *ngFor="let feature of service.features">
+            <i class="fas fa-check"></i>
+            {{feature}}
+          </li>
+        </ul>
+        
+        <button class="btn-service">Choisir ce coaching</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Coaches Section -->
+<section class="coaches-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Nos Experts Coaches</h2>
+      <p>Rencontrez nos professionnels certifiés</p>
+    </div>
+    
+    <div class="coaches-grid">
+      <div *ngFor="let coach of coaches" class="coach-card">
+        <div class="coach-image">
+          <img [src]="coach.image" [alt]="coach.name">
+        </div>
+        <div class="coach-info">
+          <h3>{{coach.name}}</h3>
+          <p class="specialty">{{coach.specialty}}</p>
+          <div class="coach-stats">
+            <div class="stat">
+              <span class="label">Expérience</span>
+              <span class="value">{{coach.experience}}</span>
+            </div>
+            <div class="stat">
+              <span class="label">Sessions</span>
+              <span class="value">{{coach.sessions}}+</span>
+            </div>
+            <div class="stat">
+              <span class="label">Note</span>
+              <span class="value">{{coach.rating}}/5 ⭐</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Form Section -->
+<section class="form-section">
+  <div class="container">
+    <div class="form-wrapper">
+      <div class="form-header">
+        <h2>Demande de Coaching</h2>
+        <p>Remplissez ce formulaire pour commencer votre transformation</p>
+      </div>
       
       <form class="coaching-form" (ngSubmit)="submitForm()">
-        <div class="form-group">
-          <label for="name">Nom complet *</label>
-          <input type="text" id="name" name="name" required>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Nom complet *</label>
+            <input type="text" id="name" [(ngModel)]="formData.name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" [(ngModel)]="formData.email" name="email" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input type="tel" id="phone" [(ngModel)]="formData.phone" name="phone">
+          </div>
+          
+          <div class="form-group">
+            <label for="coachingType">Type de coaching *</label>
+            <select id="coachingType" [(ngModel)]="formData.coachingType" name="coachingType" required>
+              <option value="">Sélectionnez un service</option>
+              <option value="personnel">Coaching Personnel</option>
+              <option value="professionnel">Coaching Professionnel</option>
+              <option value="entrepreneurial">Coaching Entrepreneurial</option>
+            </select>
+          </div>
         </div>
         
         <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" required>
+          <label for="preferredDate">Date préférée</label>
+          <input type="date" id="preferredDate" [(ngModel)]="formData.preferredDate" name="preferredDate">
         </div>
         
         <div class="form-group">
-          <label for="phone">Téléphone</label>
-          <input type="tel" id="phone" name="phone">
+          <label for="message">Décrivez vos objectifs *</label>
+          <textarea id="message" [(ngModel)]="formData.message" name="message" rows="4" required 
+                    placeholder="Parlez-nous de vos objectifs et de ce que vous souhaitez accomplir..."></textarea>
         </div>
         
-        <div class="form-group">
-          <label for="service">Type de coaching souhaité *</label>
-          <select id="service" name="service" required>
-            <option value="">Sélectionnez un service</option>
-            <option value="personnel">Coaching Personnel</option>
-            <option value="professionnel">Coaching Professionnel</option>
-            <option value="entrepreneurial">Coaching Entrepreneurial</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="objectives">Vos objectifs *</label>
-          <textarea id="objectives" name="objectives" rows="4" required 
-                    placeholder="Décrivez vos objectifs et ce que vous souhaitez accomplir..."></textarea>
-        </div>
-        
-        <div class="form-group">
-          <label for="availability">Disponibilités</label>
-          <textarea id="availability" name="availability" rows="3" 
-                    placeholder="Indiquez vos disponibilités pour les sessions..."></textarea>
-        </div>
-        
-        <button type="submit" class="btn btn-primary btn-large">Envoyer ma demande</button>
+        <button type="submit" class="btn-submit">Envoyer ma demande</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- Section Témoignages -->
+<!-- Testimonials Section -->
 <section class="testimonials-section">
   <div class="container">
-    <div class="section-title">
+    <div class="section-header">
       <h2>Témoignages de nos coachés</h2>
-      <p>Découvrez les retours de nos clients satisfaits</p>
+      <p>Découvrez les transformations de nos clients</p>
     </div>
     
     <div class="testimonials-grid">
-      <div class="testimonial-card">
+      <div class="testimonial">
         <div class="testimonial-content">
-          <p>"Le coaching avec NCC Formation m'a permis de clarifier mes objectifs et de prendre confiance en moi. Je recommande !"</p>
+          <p>"Le coaching avec NCC Formation m'a permis de clarifier mes objectifs et de prendre confiance en moi. Une expérience transformatrice !"</p>
         </div>
         <div class="testimonial-author">
-          <strong>Marie D.</strong>
-          <span>Entrepreneuse</span>
+          <div class="author-info">
+            <strong>Marie Dubois</strong>
+            <span>Entrepreneuse</span>
+          </div>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
         </div>
       </div>
       
-      <div class="testimonial-card">
+      <div class="testimonial">
         <div class="testimonial-content">
-          <p>"Un accompagnement professionnel et bienveillant qui m'a aidé à surmonter mes blocages et à avancer dans ma carrière."</p>
+          <p>"Un accompagnement professionnel qui m'a aidé à surmonter mes blocages et à avancer dans ma carrière. Résultats concrets !"</p>
         </div>
         <div class="testimonial-author">
-          <strong>Thomas L.</strong>
-          <span>Manager</span>
+          <div class="author-info">
+            <strong>Thomas Laurent</strong>
+            <span>Manager IT</span>
+          </div>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
         </div>
       </div>
       
-      <div class="testimonial-card">
+      <div class="testimonial">
         <div class="testimonial-content">
-          <p>"Grâce au coaching, j'ai pu lancer mon entreprise avec plus de sérénité et de méthode. Un vrai plus !"</p>
+          <p>"Grâce au coaching entrepreneurial, j'ai pu lancer mon entreprise avec méthode et sérénité. Un investissement rentable !"</p>
         </div>
         <div class="testimonial-author">
-          <strong>Sophie M.</strong>
-          <span>Fondatrice startup</span>
+          <div class="author-info">
+            <strong>Sophie Martin</strong>
+            <span>Fondatrice startup</span>
+          </div>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
         </div>
       </div>
     </div>
   </div>
-</section> 
+</section>
+
+<!-- CTA Section -->
+<section class="cta-coaching">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Prêt à transformer votre vie ?</h2>
+      <p>Commencez votre parcours de transformation dès aujourd'hui</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary">Réserver une consultation gratuite</button>
+        <button class="btn btn-secondary">En savoir plus</button>
+      </div>
+    </div>
+  </div>
+</section>
