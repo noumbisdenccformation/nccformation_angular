@@ -14,8 +14,9 @@ export class Ressources implements AfterViewInit {
     const images = document.querySelectorAll('#pdf-groups-container img');
     
     images.forEach(image => {
-      image.addEventListener('click', function() {
-        const pdfFileName = (this as HTMLImageElement).src.replace(/\.png$/, '.pdf');
+      image.addEventListener('click', (event) => {
+        const target = event.target as HTMLImageElement;
+        const pdfFileName = target.src.replace(/\.png$/, '.pdf');
         window.open(pdfFileName, '_blank');
       });
     });
