@@ -67,6 +67,9 @@ footer .dessous{
     position: relative;
     top: 0; 
     transform: translateX(+1.7%); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 footer .dessous .copyright{
@@ -75,4 +78,5 @@ footer .dessous .copyright{
     font-size: 20px;
     color: chartreuse;
     font-weight: bolder;
+    padding-top: 15px;
 }
