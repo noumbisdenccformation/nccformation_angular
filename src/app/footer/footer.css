@@ -61,7 +61,7 @@ footer .dessous{
     width: 190vh; 
     height: 50px; 
     box-sizing: border-box;
-    background-color: rgb(249, 250, 200); 
+    background-color: blue; 
     border-radius: 0 0 50px 50px ; 
     border: 1px blue solid;
     position: relative;
