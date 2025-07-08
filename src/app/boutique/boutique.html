@@ -71,9 +71,9 @@
           </div>
           
           <div class="product-price">
-            <span class="current-price">{{product.price}}€</span>
+            <span class="current-price">{{product.price}} FCFA</span>
             <span *ngIf="product.originalPrice > product.price" 
-                  class="original-price">{{product.originalPrice}}€</span>
+                  class="original-price">{{product.originalPrice}} FCFA</span>
           </div>
           
           <button class="btn-add-cart" (click)="addToCart(product)">
