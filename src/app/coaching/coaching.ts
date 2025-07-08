@@ -17,7 +17,7 @@ export class Coaching {
       title: 'Coaching Personnel',
       description: 'Développez votre potentiel et atteignez vos objectifs personnels',
       icon: 'fas fa-user',
-      price: 89,
+      price: 53000,
       duration: '1h',
       features: ['Bilan personnel', 'Plan d\'action', 'Suivi personnalisé']
     },
@@ -26,7 +26,7 @@ export class Coaching {
       title: 'Coaching Professionnel',
       description: 'Accélérez votre carrière et développez vos compétences',
       icon: 'fas fa-briefcase',
-      price: 129,
+      price: 77000,
       duration: '1h30',
       features: ['Analyse de compétences', 'Stratégie carrière', 'Réseau professionnel']
     },
@@ -35,7 +35,7 @@ export class Coaching {
       title: 'Coaching Entrepreneurial',
       description: 'Lancez et développez votre entreprise avec succès',
       icon: 'fas fa-rocket',
-      price: 199,
+      price: 119000,
       duration: '2h',
       features: ['Business plan', 'Stratégie marketing', 'Financement']
     }
