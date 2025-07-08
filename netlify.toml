@@ -1,5 +1,5 @@
 [build]
-  publish = "dist/ncc-frontend"
+  publish = "dist/ncc-frontend/browser"
   command = "npm run build"
 
 [[redirects]]
