@@ -24,15 +24,21 @@ export class Boutique {
     },
     {
       id: 2,
-      name: 'Guide Crypto Avancé',
-      description: 'E-book complet sur les stratégies d\'investissement crypto',
-      price: 29000,
-      originalPrice: 47000,
-      image: 'assets/img/crypto2.png',
-      category: 'E-book',
-      rating: 4.7,
-      reviews: 89,
-      badge: 'Nouveau'
+      name: 'EduTime Pro - Gestion Emploi du Temps',
+      description: 'Application complète de gestion des emplois du temps scolaires pour tous niveaux',
+      price: 0,
+      originalPrice: 0,
+      image: 'assets/img/formations1.png',
+      category: 'Application',
+      rating: 4.9,
+      reviews: 342,
+      badge: 'Innovation',
+      isSpecial: true,
+      packs: [
+        { name: 'Gratuit', price: 0, features: ['Génération emplois du temps', 'Un enseignant par matière', 'Pas d\'impression/téléchargement'] },
+        { name: 'Professionnel', price: 20000, period: '/an', features: ['Toutes fonctionnalités', 'Gestion salles labo', 'Plusieurs enseignants/matière', 'Export PDF', 'Cours troncs communs'] },
+        { name: 'VIP', price: 'Sur devis', features: ['Personnalisation complète', 'Gestion examens', 'Support prioritaire', 'Fonctionnalités sur mesure'] }
+      ]
     },
     {
       id: 3,
@@ -48,6 +54,18 @@ export class Boutique {
     },
     {
       id: 4,
+      name: 'Guide Crypto Avancé',
+      description: 'E-book complet sur les stratégies d\'investissement crypto',
+      price: 29000,
+      originalPrice: 47000,
+      image: 'assets/img/crypto2.png',
+      category: 'E-book',
+      rating: 4.7,
+      reviews: 89,
+      badge: 'Nouveau'
+    },
+    {
+      id: 5,
       name: 'Consultation 1h',
       description: 'Séance de coaching personnalisé avec un expert',
       price: 53000,
@@ -60,7 +78,7 @@ export class Boutique {
     }
   ];
 
-  categories = ['Tous', 'Formation', 'E-book', 'Template', 'Service'];
+  categories = ['Tous', 'Formation', 'Application', 'E-book', 'Template', 'Service'];
   selectedCategory = 'Tous';
   cart: any[] = [];
 
@@ -77,7 +95,10 @@ export class Boutique {
 
   addToCart(product: any) {
     this.cart.push(product);
-    // Animation ou notification
+  }
+
+  tryProduct(product: any) {
+    window.open('https://edutime-pro.vercel.app', '_blank');
   }
 
   getDiscount(product: any): number {

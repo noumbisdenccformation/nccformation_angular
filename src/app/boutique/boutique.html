@@ -46,7 +46,7 @@
     </div>
     
     <div class="products-grid">
-      <div *ngFor="let product of getFilteredProducts()" class="product-card">
+      <div *ngFor="let product of getFilteredProducts()" class="product-card" [class.special-product]="product.isSpecial">
         <div class="product-image">
           <img [src]="product.image" [alt]="product.name">
           <div class="product-badge" [ngClass]="product.badge.toLowerCase()">
@@ -70,13 +70,36 @@
             <span class="rating-text">({{product.reviews}} avis)</span>
           </div>
           
-          <div class="product-price">
+          <!-- Affichage spécial pour EduTime Pro -->
+          <div *ngIf="product.isSpecial" class="special-pricing">
+            <div class="pricing-packs">
+              <div *ngFor="let pack of product.packs" class="pricing-pack">
+                <h4>{{pack.name}}</h4>
+                <div class="pack-price">
+                  <span *ngIf="pack.price === 0">Gratuit</span>
+                  <span *ngIf="pack.price > 0 && pack.price !== 'Sur devis'">{{pack.price}} FCFA{{pack.period || ''}}</span>
+                  <span *ngIf="pack.price === 'Sur devis'">{{pack.price}}</span>
+                </div>
+                <ul class="pack-features">
+                  <li *ngFor="let feature of pack.features">{{feature}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Affichage normal pour les autres produits -->
+          <div *ngIf="!product.isSpecial" class="product-price">
             <span class="current-price">{{product.price}} FCFA</span>
             <span *ngIf="product.originalPrice > product.price" 
                   class="original-price">{{product.originalPrice}} FCFA</span>
           </div>
           
-          <button class="btn-add-cart" (click)="addToCart(product)">
+          <button *ngIf="product.isSpecial" class="btn-try-now" (click)="tryProduct(product)">
+            <i class="fas fa-rocket"></i>
+            Essayer maintenant - C'est GRATUIT !
+          </button>
+          
+          <button *ngIf="!product.isSpecial" class="btn-add-cart" (click)="addToCart(product)">
             <i class="fas fa-shopping-cart"></i>
             Ajouter au panier
           </button>
