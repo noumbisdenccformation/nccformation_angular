@@ -76,9 +76,7 @@
               <div *ngFor="let pack of product.packs" class="pricing-pack">
                 <h4>{{pack.name}}</h4>
                 <div class="pack-price">
-                  <span *ngIf="pack.price === 0">Gratuit</span>
-                  <span *ngIf="typeof pack.price === 'number' && pack.price > 0">{{pack.price}} FCFA{{pack.period || ''}}</span>
-                  <span *ngIf="typeof pack.price === 'string'">{{pack.price}}</span>
+                  <span>{{pack.priceText}}</span>
                 </div>
                 <ul class="pack-features">
                   <li *ngFor="let feature of pack.features">{{feature}}</li>

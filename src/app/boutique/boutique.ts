@@ -35,9 +35,9 @@ export class Boutique {
       badge: 'Innovation',
       isSpecial: true,
       packs: [
-        { name: 'Gratuit', price: 0, features: ['Génération emplois du temps', 'Un enseignant par matière', 'Pas d\'impression/téléchargement'] },
-        { name: 'Professionnel', price: 20000, period: '/an', features: ['Toutes fonctionnalités', 'Gestion salles labo', 'Plusieurs enseignants/matière', 'Export PDF', 'Cours troncs communs'] },
-        { name: 'VIP', price: 'Sur devis', features: ['Personnalisation complète', 'Gestion examens', 'Support prioritaire', 'Fonctionnalités sur mesure'] }
+        { name: 'Gratuit', price: 0, priceText: 'Gratuit', features: ['Génération emplois du temps', 'Un enseignant par matière', 'Pas d\'impression/téléchargement'] },
+        { name: 'Professionnel', price: 20000, priceText: '20 000 FCFA/an', features: ['Toutes fonctionnalités', 'Gestion salles labo', 'Plusieurs enseignants/matière', 'Export PDF', 'Cours troncs communs'] },
+        { name: 'VIP', price: 0, priceText: 'Sur devis', features: ['Personnalisation complète', 'Gestion examens', 'Support prioritaire', 'Fonctionnalités sur mesure'] }
       ]
     },
     {
