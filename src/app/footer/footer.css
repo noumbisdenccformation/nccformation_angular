@@ -21,21 +21,29 @@ footer .dessus{
 footer .dessus .adresse{
     display: flex;
     flex-direction: row;
-    align-items:center;
+    align-items: center;
     justify-content: center;
+    height: 100%;
+    padding: 10px 0;
 }
 
 footer .dessus .adresse .element{
     display: flex;
     flex-direction: row;
-    justify-content:stretch;
+    align-items: center;
+    justify-content: center;
     font-size: 19px;
-    padding: 2%;
+    padding: 0 2%;
     color: maroon;
 }
 
 footer .dessus .adresse .element i{
-    margin: 3% 0 ;
+    margin-right: 8px;
+}
+
+footer .dessus .adresse .element p{
+    margin: 0;
+    padding: 0;
 }
 
 footer .dessus .social-links{
