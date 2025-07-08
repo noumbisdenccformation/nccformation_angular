@@ -104,4 +104,4 @@ export class Boutique {
   getDiscount(product: any): number {
     return Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
   }
-}
+}// Updated mar. 08 juil. 2025 13:14:45 WAT
