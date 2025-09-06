@@ -1,0 +1,14 @@
+<div class="auth-container">
+  <h2>Authentification</h2>
+  <form (ngSubmit)="onSubmit()">
+    <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required>
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Mot de passe" required>
+
+    <button type="submit" (click)="signup()">S'inscrire</button>
+    <button type="submit" (click)="login()">Se connecter</button>
+  </form>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+</div>
