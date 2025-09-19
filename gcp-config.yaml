@@ -1,0 +1,33 @@
+# Configuration Google Cloud - Always Free Tier
+project_id: nccformation-8e052
+region: europe-west1
+
+# Frontend (Cloud Storage - Always Free: 5GB)
+frontend:
+  bucket: nccformation-frontend
+  cdn: true
+  
+# Backend (Cloud Run - Always Free: 2M requests/month)
+backend:
+  service: ncc-backend
+  memory: 512Mi
+  cpu: 1
+  max_instances: 1
+  concurrency: 10
+  
+# Database (Firestore - Always Free: 1GB + 50k reads/day)
+database:
+  type: firestore
+  location: europe-west1
+  
+# Monitoring & Alerts
+monitoring:
+  budget_alert: 10  # Alert at 10€
+  usage_alert: 80   # Alert at 80% of free tier
+  
+# Security
+security:
+  cors_origins:
+    - https://nccformation.com
+    - https://www.nccformation.com
+  auth_domain: nccformation-8e052.firebaseapp.com

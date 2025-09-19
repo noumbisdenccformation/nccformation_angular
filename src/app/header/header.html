@@ -1,0 +1,23 @@
+<!--l'en tête de la page-->
+<header>
+  <div class="logo">
+    <button (click)="navigateTo('accueil')">
+      <img src="assets/img/logo-ncc.png" alt="Logo NCC">
+    </button>
+  </div>
+  <div class="dessus">
+    <div class="menudvptperso">
+      <button class="dvpt" (click)="navigateTo('boutique')">Boutique</button>
+      <button class="dvpt" (click)="navigateTo('ressources')">Ressources</button>
+      <button class="dvpt" (click)="navigateTo('evenements')">Événements</button>
+    </div>
+    <div class="menudvptnum">
+      <button class="num" (click)="navigateTo('crypto')">Crypto-monnaies</button>
+      <button class="num" (click)="navigateTo('formation')">Formation</button>
+      <button class="num" (click)="navigateTo('coaching')">Coaching</button>
+    </div>
+  </div>
+  <div class="dessous">
+    <div class="description-site">NCC-Formation : De la passion à la monétisation!</div>
+  </div>
+</header>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCC Formation - Plateforme d'apprentissage</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; color: white; margin-bottom: 50px; }
+        .header h1 { font-size: 3rem; margin-bottom: 10px; }
+        .header p { font-size: 1.2rem; opacity: 0.9; }
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px; }
+        .service-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-10px); }
+        .service-card h3 { color: #333; margin-bottom: 15px; font-size: 1.5rem; }
+        .service-card p { color: #666; line-height: 1.6; }
+        .cta { text-align: center; }
+        .btn { background: #ff6b6b; color: white; padding: 15px 30px; border: none; border-radius: 25px; font-size: 1.1rem; cursor: pointer; transition: background 0.3s; }
+        .btn:hover { background: #ff5252; }
+        .status { background: rgba(255,255,255,0.1); color: white; padding: 15px; border-radius: 10px; margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 NCC Formation</h1>
+            <p>Votre plateforme d'apprentissage numérique</p>
+        </div>
+
+        <div class="services">
+            <div class="service-card">
+                <h3>📚 Formations</h3>
+                <p>Découvrez nos formations en développement web, mobile et intelligence artificielle. Apprenez avec des experts du domaine.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>🛒 Boutique</h3>
+                <p>Accédez à nos ressources premium, livres numériques et outils de développement pour booster votre carrière.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>💼 Coaching</h3>
+                <p>Bénéficiez d'un accompagnement personnalisé avec nos coachs experts pour atteindre vos objectifs professionnels.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>🎯 Événements</h3>
+                <p>Participez à nos webinaires, ateliers et conférences pour rester à la pointe des technologies.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>💰 Crypto & Finance</h3>
+                <p>Apprenez les bases de la blockchain, des cryptomonnaies et de la finance décentralisée.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>🌐 Web & Numérique</h3>
+                <p>Maîtrisez les technologies web modernes et les stratégies de transformation digitale.</p>
+            </div>
+        </div>
+
+        <div class="cta">
+            <button class="btn" onclick="alert('Inscription bientôt disponible!')">🚀 Commencer maintenant</button>
+        </div>
+
+        <div class="status">
+            ✅ <strong>Statut:</strong> Déployé sur Google Cloud Platform - Always Free Tier<br>
+            🔗 <strong>Backend:</strong> Spring Boot + Firebase<br>
+            📱 <strong>Frontend:</strong> Angular 20 + Material Design
+        </div>
+    </div>
+
+    <script>
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAFyRTGJgRf9Q-PYKzFofc9Jc1A7dRDtgc",
+            authDomain: "nccformation-8e052.firebaseapp.com",
+            projectId: "nccformation-8e052",
+            storageBucket: "nccformation-8e052.appspot.com",
+            messagingSenderId: "778629381126",
+            appId: "1:778629381126:web:0c5232f5b69f1aa13f5787"
+        };
+        
+        console.log('🔥 Firebase configuré:', firebaseConfig.projectId);
+        console.log('☁️ Déployé sur Google Cloud Platform');
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+name: Deploy to Google Cloud
+
+on:
+  push:
+    branches: [ main, master ]
+
+env:
+  PROJECT_ID: nccformation-8e052
+  REGION: europe-west1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build Angular
+      run: npm run build
+    
+    - name: Setup Google Cloud CLI
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        project_id: ${{ env.PROJECT_ID }}
+    
+    - name: Deploy to Cloud Storage (Always Free)
+      run: |
+        gsutil -m cp -r dist/ncc-frontend/* gs://nccformation-frontend/
+        gsutil web set -m index.html -e index.html gs://nccformation-frontend
+    
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    
+    - name: Build Backend
+      run: mvn clean package -DskipTests
+    
+    - name: Deploy to Cloud Run (Always Free)
+      run: |
+        gcloud run deploy ncc-backend \
+          --source . \
+          --region=$REGION \
+          --platform=managed \
+          --allow-unauthenticated \
+          --memory=512Mi \
+          --cpu=1 \
+          --max-instances=1 \
+          --concurrency=10

@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Pacifico&family=Playfair+Display&display=swap');
+
+:root{
+    --main-color:#8e44ad;
+    --red:#e74c3c;
+    --orangen:#f39c12;
+    --white:#fff;
+    --black:#2c3e50;
+    --light-color:#888;
+    --light-bg:#eee;
+    --border:rgba(0,0,0,.2);
+    --dark-sky-blue:#1E90FF;
+    --blue:rgb(249, 250, 200);
+    --jauneor:rgb(248,211, 159);
+    --marron-or:rgba(59, 30, 22, 0.8);
+}
+
+header{
+    position: fixed;
+    top:1vh;
+    z-index: 1000;
+    width: 100%;
+}
+
+header .logo{
+    margin-left: 68px;
+    margin-top: 2px;
+    position: absolute; 
+    z-index: 1000;
+}
+
+header .logo img{
+    width: 4.5vh;
+    height: 5vh;
+}
+
+header .logo button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+header .dessus{
+    width: 190vh; 
+    height: 50px; 
+    background-color: white; 
+    border-radius: 100px 100px 0 0; 
+    border: 1px blue solid;
+    position: absolute;
+    top: 0; 
+    transform: translateX(+1.7%); 
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+}
+
+header .dessus .menudvptperso{
+    display: flex;
+    flex-direction: row;
+    margin-right: 5%;
+}
+
+header .dessus .menudvptperso button{
+    padding: 5px;
+    cursor: pointer;
+}
+
+header .dessus .menudvptnum{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5%;
+}
+
+header .dessus .menudvptnum button{
+    padding: 5px;
+    cursor: pointer;
+}
+
+.dvpt, .num{
+    height: 30px;
+    width: 130px;
+    margin-left: 15px;
+    padding-top: 10px;
+    background-color: maroon;
+    border-radius: 40px 40px 0 0;
+    border: 0.5px blue solid;
+    bottom: 0;
+    text-align:center;
+    color: whitesmoke;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.dvpt:hover, .num:hover {
+    background-color: #8b0000;
+    transform: translateY(-2px);
+}
+
+header .dessous{
+    width: 190vh; 
+    height: 50px; 
+    background-color: blue; 
+    border-radius: 0 0 100px 100px ; 
+    border: 1px blue solid;
+    position: absolute;
+    top: 50px; 
+    transform: translateX(+1.7%); 
+}
+
+header .dessous .description-site{
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    color: chartreuse;
+    font-family: "Dancing Script", cursive;
+    font-weight: bolder;
+}
