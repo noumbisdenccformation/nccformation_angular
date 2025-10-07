@@ -4,17 +4,17 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "dist/nccformation_angular/browser",
+   "public": "dist/ncc-frontend", 
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
+  ]
   }
 }
