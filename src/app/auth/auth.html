@@ -1,14 +1,52 @@
 <div class="auth-container">
-  <h2>Authentification</h2>
-  <form (ngSubmit)="onSubmit()">
-    <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required>
-    <input type="password" [(ngModel)]="password" name="password" placeholder="Mot de passe" required>
-
-    <button type="submit" (click)="signup()">S'inscrire</button>
-    <button type="submit" (click)="login()">Se connecter</button>
-  </form>
-
-  <div *ngIf="error" class="error-message">
-    {{ error }}
+  <div class="auth-toggle">
+    <button 
+      (click)="toggleView('login')" 
+      [class.active]="viewMode === 'login'"
+    >
+      Connexion
+    </button>
+    <button 
+      (click)="toggleView('signup')" 
+      [class.active]="viewMode === 'signup'"
+    >
+      Inscription
+    </button>
   </div>
+
+  <h2 *ngIf="viewMode === 'login'">Accédez à votre compte</h2>
+  <h2 *ngIf="viewMode === 'signup'">Créer un nouveau compte</h2>
+
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        id="email" 
+        [(ngModel)]="email" 
+        name="email" 
+        placeholder="votre@email.com"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input 
+        type="password" 
+        id="password" 
+        [(ngModel)]="password" 
+        name="password" 
+        placeholder="votre mot de passe"
+        required
+      >
+    </div>
+
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+
+    <button type="submit" class="submit-btn">
+      {{ viewMode === 'login' ? 'Se Connecter' : 'S\'inscrire' }}
+    </button>
+  </form>
 </div>

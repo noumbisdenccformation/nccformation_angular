@@ -1,8 +1,17 @@
 <app-header></app-header>
-
-<!--contenu de la page principale-->
-<div id="contenu">
-  <router-outlet></router-outlet>
-</div>
-
+<main>
+    <router-outlet></router-outlet> 
+</main>
 <app-footer></app-footer>
+
+<div 
+  class="modal-overlay" 
+  *ngIf="showAuthModal$ | async" 
+>
+  <div class="modal-content">
+    <button class="modal-close" (click)="closeModal()">×</button>
+    
+    <app-auth></app-auth> 
+
+  </div>
+</div>
