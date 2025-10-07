@@ -1,5 +1,5 @@
 // src/app/app.ts
-
+//les importations de bibiothèque
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule, AsyncPipe } from '@angular/common'; 
