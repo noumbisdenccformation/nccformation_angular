@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:vercel": "ng build --configuration production --base-href /"
+    "build:vercel": "ng build --configuration production --base-href /",
+    "vercel-build": "ng build --configuration production"
   },
   "prettier": {
     "overrides": [
