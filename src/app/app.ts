@@ -3,7 +3,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule, AsyncPipe } from '@angular/common'; 
-import { Header } from './header/header';
+import { HeaderComponent } from './header/header';
 import { Footer } from './footer/footer';
 import { Observable } from 'rxjs'; // N'oubliez pas cet import !
 
@@ -19,7 +19,7 @@ import { AuthComponent } from './auth/auth';
   imports: [
     CommonModule,
     RouterOutlet, 
-    Header, 
+    HeaderComponent,
     Footer,
     AsyncPipe,      
     AuthComponent   

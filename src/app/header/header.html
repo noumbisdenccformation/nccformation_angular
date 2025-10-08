@@ -5,6 +5,7 @@
       <img src="assets/img/logo-ncc.png" alt="Logo NCC">
     </button>
   </div>
+  
   <div class="dessus">
     <div class="menudvptperso">
       <button class="dvpt" (click)="navigateTo('boutique')">Boutique</button>
@@ -17,7 +18,55 @@
       <button class="num" (click)="navigateTo('coaching')">Coaching</button>
     </div>
   </div>
+
+  <!-- NOUVEAU : Bouton de connexion -->
+  <div class="auth-section">
+    <button class="btn-connexion" (click)="openAuthModal()">
+      <span class="user-icon">👤</span>
+      <span>Connexion</span>
+    </button>
+  </div>
+
   <div class="dessous">
     <div class="description-site">NCC-Formation : De la passion à la monétisation!</div>
   </div>
 </header>
+
+<!-- Modal de connexion/inscription -->
+<div class="modal-overlay" *ngIf="isAuthModalOpen" (click)="closeAuthModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeAuthModal()">✕</button>
+    
+    <div class="modal-tabs">
+      <button 
+        [class.active]="activeTab === 'login'"
+        (click)="activeTab = 'login'">
+        Connexion
+      </button>
+      <button 
+        [class.active]="activeTab === 'register'"
+        (click)="activeTab = 'register'">
+        Inscription
+      </button>
+    </div>
+
+    <!-- Formulaire de connexion -->
+    <form *ngIf="activeTab === 'login'" class="auth-form" (ngSubmit)="onLogin()">
+      <h2>Connectez-vous</h2>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Mot de passe" required>
+      <button type="submit" class="submit-btn">Se connecter</button>
+      <a href="#" class="forgot-link">Mot de passe oublié ?</a>
+    </form>
+
+    <!-- Formulaire d'inscription -->
+    <form *ngIf="activeTab === 'register'" class="auth-form" (ngSubmit)="onRegister()">
+      <h2>Créer un compte</h2>
+      <input type="text" placeholder="Nom complet" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Mot de passe" required>
+      <input type="password" placeholder="Confirmer le mot de passe" required>
+      <button type="submit" class="submit-btn">S'inscrire</button>
+    </form>
+  </div>
+</div>
