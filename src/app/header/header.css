@@ -118,14 +118,16 @@ header .dessous .description-site{
 }
 
 /* Bouton de connexion */
+
 .auth-section {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 2px;
+  right: 68px;
+  z-index: 1000;
 }
 
 .btn-connexion {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #8b4789 0%, #d4af37 50%, #8b4789 100%);
   color: white;
   border: none;
   border-radius: 50px;
@@ -137,12 +139,13 @@ header .dessous .description-site{
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(139, 71, 137, 0.4);
 }
 
 .btn-connexion:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+  background: linear-gradient(135deg, #9d52a1 0%, #f0c952 50%, #9d52a1 100%);
 }
 
 .user-icon {
