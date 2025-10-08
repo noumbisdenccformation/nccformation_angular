@@ -1,0 +1,4 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "claudeCodeChat.permissions.yoloMode": false
+}
