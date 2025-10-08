@@ -13,6 +13,8 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/ncc-frontend",
+            "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -21,7 +23,7 @@
             "assets": [
               "src/assets",
               {
-                "glob": "**/*",
+                "glob": "*/",
                 "input": "public"
               }
             ],
@@ -78,7 +80,7 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
-                "glob": "**/*",
+                "glob": "*/",
                 "input": "public"
               }
             ],
