@@ -2,16 +2,21 @@
 <section class="hero-boutique">
   <div class="container">
     <div class="hero-content">
-      <h1>Boutique NCC Formation</h1>
-      <p>Découvrez nos produits exclusifs pour accélérer votre réussite</p>
+      <div class="hero-badge">🌿 Produits Longrich Premium</div>
+      <h1>Boutique Bien-Être & Beauté</h1>
+      <p>Découvrez notre gamme exclusive de produits Longrich : soins corporels, compléments alimentaires et cosmétiques naturels de qualité supérieure</p>
       <div class="hero-features">
         <div class="feature">
-          <i class="fas fa-shipping-fast"></i>
-          <span>Livraison instantanée</span>
+          <i class="fas fa-leaf"></i>
+          <span>100% Naturel</span>
         </div>
         <div class="feature">
-          <i class="fas fa-shield-alt"></i>
-          <span>Paiement sécurisé</span>
+          <i class="fas fa-shipping-fast"></i>
+          <span>Livraison Rapide</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-certificate"></i>
+          <span>Qualité Certifiée</span>
         </div>
         <div class="feature">
           <i class="fas fa-headset"></i>
@@ -41,12 +46,12 @@
 <section class="products-section">
   <div class="container">
     <div class="section-header">
-      <h2>Nos Produits</h2>
-      <p>Sélection premium pour votre développement professionnel</p>
+      <h2>🌿 Notre Gamme Longrich</h2>
+      <p>Des produits naturels de qualité supérieure pour votre bien-être et votre beauté</p>
     </div>
     
     <div class="products-grid">
-      <div *ngFor="let product of getFilteredProducts()" class="product-card" [class.special-product]="product.isSpecial">
+      <div *ngFor="let product of getFilteredProducts()" class="product-card">
         <div class="product-image">
           <img [src]="product.image" [alt]="product.name">
           <div class="product-badge" [ngClass]="product.badge.toLowerCase()">
@@ -70,34 +75,13 @@
             <span class="rating-text">({{product.reviews}} avis)</span>
           </div>
           
-          <!-- Affichage spécial pour EduTime Pro -->
-          <div *ngIf="product.isSpecial" class="special-pricing">
-            <div class="pricing-packs">
-              <div *ngFor="let pack of product.packs" class="pricing-pack">
-                <h4>{{pack.name}}</h4>
-                <div class="pack-price">
-                  <span>{{pack.priceText}}</span>
-                </div>
-                <ul class="pack-features">
-                  <li *ngFor="let feature of pack.features">{{feature}}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Affichage normal pour les autres produits -->
-          <div *ngIf="!product.isSpecial" class="product-price">
+          <div class="product-price">
             <span class="current-price">{{product.price}} FCFA</span>
             <span *ngIf="product.originalPrice > product.price" 
                   class="original-price">{{product.originalPrice}} FCFA</span>
           </div>
           
-          <button *ngIf="product.isSpecial" class="btn-try-now" (click)="tryProduct(product)">
-            <i class="fas fa-rocket"></i>
-            Essayer maintenant - C'est GRATUIT !
-          </button>
-          
-          <button *ngIf="!product.isSpecial" class="btn-add-cart" (click)="addToCart(product)">
+          <button class="btn-add-cart" (click)="addToCart(product)">
             <i class="fas fa-shopping-cart"></i>
             Ajouter au panier
           </button>
@@ -110,30 +94,43 @@
 <!-- Testimonials -->
 <section class="testimonials-section">
   <div class="container">
-    <h2>Ce que disent nos clients</h2>
+    <h2>⭐ Témoignages de nos Clients</h2>
     <div class="testimonials-grid">
       <div class="testimonial">
         <div class="testimonial-content">
-          <p>"Les formations NCC ont transformé ma carrière. Un investissement qui en vaut vraiment la peine !"</p>
+          <p>"Les produits Longrich ont transformé ma peau ! La crème hydratante est incroyable, ma peau n'a jamais été aussi douce. Je recommande à 100% !"</p>
         </div>
         <div class="testimonial-author">
           <img src="assets/img/avatar1.jpg" alt="Client">
           <div>
-            <strong>Marie Dubois</strong>
-            <span>Développeuse Web</span>
+            <strong>Aminata Diallo</strong>
+            <span>Cliente satisfaite</span>
           </div>
         </div>
       </div>
       
       <div class="testimonial">
         <div class="testimonial-content">
-          <p>"Le pack complet m'a permis d'acquérir toutes les compétences nécessaires pour lancer mon business."</p>
+          <p>"La Spiruline Longrich m'a redonné de l'énergie ! Je me sens beaucoup mieux depuis que je la prends. Qualité exceptionnelle."</p>
         </div>
         <div class="testimonial-author">
           <img src="assets/img/avatar2.jpg" alt="Client">
           <div>
-            <strong>Pierre Martin</strong>
-            <span>Entrepreneur</span>
+            <strong>Jean-Paul Kamga</strong>
+            <span>Client régulier</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"J'utilise les cosmétiques Longrich depuis 6 mois et je vois vraiment la différence. Produits naturels de qualité, je ne changerai plus !"</p>
+        </div>
+        <div class="testimonial-author">
+          <img src="assets/img/avatar1.jpg" alt="Client">
+          <div>
+            <strong>Marie Nguesso</strong>
+            <span>Cliente fidèle</span>
           </div>
         </div>
       </div>
@@ -145,10 +142,24 @@
 <section class="cta-boutique">
   <div class="container">
     <div class="cta-content">
-      <h2>Besoin d'aide pour choisir ?</h2>
-      <p>Nos experts sont là pour vous conseiller</p>
+      <h2>🌿 Devenez Distributeur Longrich</h2>
+      <p>Rejoignez notre réseau et générez des revenus avec des produits de qualité</p>
+      <div class="cta-features">
+        <div class="cta-feature">
+          <i class="fas fa-dollar-sign"></i>
+          <span>Revenus attractifs</span>
+        </div>
+        <div class="cta-feature">
+          <i class="fas fa-users"></i>
+          <span>Formation gratuite</span>
+        </div>
+        <div class="cta-feature">
+          <i class="fas fa-chart-line"></i>
+          <span>Business évolutif</span>
+        </div>
+      </div>
       <div class="cta-buttons">
-        <button class="btn btn-primary">Demander un conseil</button>
+        <button class="btn btn-primary">Devenir Distributeur</button>
         <button class="btn btn-secondary">Voir le panier ({{cart.length}})</button>
       </div>
     </div>

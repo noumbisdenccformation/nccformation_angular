@@ -1,13 +1,31 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, from, of } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
 import { 
-  signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword,
+  Auth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
   signOut,
-  User,
-  onAuthStateChanged
-} from 'firebase/auth';
-import { auth } from '../core/firebase.config';
-import { BehaviorSubject } from 'rxjs';
+  onAuthStateChanged,
+  User as FirebaseUser,
+  updateProfile,
+  sendPasswordResetEmail,
+  GoogleAuthProvider,
+  signInWithPopup
+} from '@angular/fire/auth';
+import { 
+  Firestore, 
+  doc, 
+  setDoc, 
+  getDoc, 
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+  Timestamp
+} from '@angular/fire/firestore';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,26 +33,392 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
+  
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
-  constructor() {
-    onAuthStateChanged(auth, (user) => {
-      this.currentUserSubject.next(user);
+  constructor(
+    private auth: Auth,
+    private firestore: Firestore
+  ) {
+    // Écouter les changements d'état d'authentification
+    onAuthStateChanged(this.auth, async (firebaseUser: FirebaseUser | null) => {
+      if (firebaseUser) {
+        const user = await this.getUserData(firebaseUser.uid);
+        this.currentUserSubject.next(user);
+        this.isAuthenticatedSubject.next(true);
+      } else {
+        this.currentUserSubject.next(null);
+        this.isAuthenticatedSubject.next(false);
+      }
     });
   }
 
-  async signIn(email: string, password: string) {
-    return signInWithEmailAndPassword(auth, email, password);
+  /**
+   * Inscription d'un nouvel utilisateur
+   */
+  async register(email: string, password: string, phone: string, firstName: string, lastName: string): Promise<User> {
+    try {
+      // Vérifier si le téléphone existe déjà
+      const phoneExists = await this.checkPhoneExists(phone);
+      if (phoneExists) {
+        throw new Error('Ce numéro de téléphone est déjà utilisé');
+      }
+
+      // Créer l'utilisateur dans Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+      const firebaseUser = userCredential.user;
+
+      // Mettre à jour le profil
+      await updateProfile(firebaseUser, {
+        displayName: `${firstName} ${lastName}`
+      });
+
+      // Créer le document utilisateur dans Firestore
+      const user: User = {
+        id: firebaseUser.uid,
+        email: email,
+        phone: phone,
+        firstName: firstName,
+        lastName: lastName,
+        quizCompleted: false,
+        enrolledFormations: [],
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+
+      await setDoc(doc(this.firestore, 'users', firebaseUser.uid), {
+        ...user,
+        createdAt: Timestamp.fromDate(user.createdAt),
+        updatedAt: Timestamp.fromDate(user.updatedAt)
+      });
+
+      this.currentUserSubject.next(user);
+      this.isAuthenticatedSubject.next(true);
+
+      return user;
+    } catch (error: any) {
+      console.error('Erreur lors de l\'inscription:', error);
+      throw this.handleAuthError(error);
+    }
   }
 
-  async signUp(email: string, password: string) {
-    return createUserWithEmailAndPassword(auth, email, password);
+  /**
+   * Connexion d'un utilisateur existant avec email ou téléphone
+   */
+  async login(emailOrPhone: string, password: string): Promise<User> {
+    try {
+      let email = emailOrPhone;
+      
+      // Si c'est un numéro de téléphone, récupérer l'email associé
+      if (this.isPhoneNumber(emailOrPhone)) {
+        const userEmail = await this.getEmailByPhone(emailOrPhone);
+        if (!userEmail) {
+          throw new Error('Aucun compte trouvé avec ce numéro de téléphone');
+        }
+        email = userEmail;
+      }
+
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      const user = await this.getUserData(userCredential.user.uid);
+      
+      if (!user) {
+        throw new Error('Utilisateur non trouvé');
+      }
+
+      this.currentUserSubject.next(user);
+      this.isAuthenticatedSubject.next(true);
+
+      return user;
+    } catch (error: any) {
+      console.error('Erreur lors de la connexion:', error);
+      throw this.handleAuthError(error);
+    }
   }
 
-  async signOut() {
-    return signOut(auth);
+  /**
+   * Vérifier si une chaîne est un numéro de téléphone
+   */
+  private isPhoneNumber(value: string): boolean {
+    // Accepte les formats: +237XXXXXXXXX, 237XXXXXXXXX, 6XXXXXXXX
+    const phoneRegex = /^(\+?237|237)?[6][0-9]{8}$/;
+    return phoneRegex.test(value.replace(/\s/g, ''));
   }
 
-  get currentUser() {
+  /**
+   * Récupérer l'email associé à un numéro de téléphone
+   */
+  private async getEmailByPhone(phone: string): Promise<string | null> {
+    try {
+      const usersCollection = collection(this.firestore, 'users');
+      const q = query(usersCollection, where('phone', '==', phone));
+      const querySnapshot = await getDocs(q);
+      
+      if (!querySnapshot.empty) {
+        const userData = querySnapshot.docs[0].data();
+        return userData['email'] || null;
+      }
+      
+      return null;
+    } catch (error) {
+      console.error('Erreur lors de la recherche par téléphone:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Vérifier si un numéro de téléphone existe déjà
+   */
+  private async checkPhoneExists(phone: string): Promise<boolean> {
+    try {
+      const usersCollection = collection(this.firestore, 'users');
+      const q = query(usersCollection, where('phone', '==', phone));
+      const querySnapshot = await getDocs(q);
+      
+      return !querySnapshot.empty;
+    } catch (error) {
+      console.error('Erreur lors de la vérification du téléphone:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Connexion avec Google
+   */
+  async loginWithGoogle(): Promise<User> {
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(this.auth, provider);
+      const firebaseUser = userCredential.user;
+
+      // Vérifier si l'utilisateur existe déjà
+      let user = await this.getUserData(firebaseUser.uid);
+
+      // Si l'utilisateur n'existe pas, le créer (téléphone sera demandé après)
+      if (!user) {
+        const names = firebaseUser.displayName?.split(' ') || ['', ''];
+        user = {
+          id: firebaseUser.uid,
+          email: firebaseUser.email || '',
+          phone: '', // Sera demandé dans un modal après connexion
+          firstName: names[0],
+          lastName: names.slice(1).join(' '),
+          profileImage: firebaseUser.photoURL || undefined,
+          quizCompleted: false,
+          enrolledFormations: [],
+          createdAt: new Date(),
+          updatedAt: new Date()
+        };
+
+        await setDoc(doc(this.firestore, 'users', firebaseUser.uid), {
+          ...user,
+          createdAt: Timestamp.fromDate(user.createdAt),
+          updatedAt: Timestamp.fromDate(user.updatedAt)
+        });
+      }
+
+      this.currentUserSubject.next(user);
+      this.isAuthenticatedSubject.next(true);
+
+      return user;
+    } catch (error: any) {
+      console.error('Erreur lors de la connexion Google:', error);
+      throw this.handleAuthError(error);
+    }
+  }
+
+  /**
+   * Déconnexion
+   */
+  async logout(): Promise<void> {
+    try {
+      await signOut(this.auth);
+      this.currentUserSubject.next(null);
+      this.isAuthenticatedSubject.next(false);
+    } catch (error) {
+      console.error('Erreur lors de la déconnexion:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Réinitialisation du mot de passe
+   */
+  async resetPassword(email: string): Promise<void> {
+    try {
+      await sendPasswordResetEmail(this.auth, email);
+    } catch (error: any) {
+      console.error('Erreur lors de la réinitialisation:', error);
+      throw this.handleAuthError(error);
+    }
+  }
+
+  /**
+   * Récupérer les données utilisateur depuis Firestore
+   */
+  private async getUserData(uid: string): Promise<User | null> {
+    try {
+      const userDoc = await getDoc(doc(this.firestore, 'users', uid));
+      
+      if (userDoc.exists()) {
+        const data = userDoc.data();
+        return {
+          ...data,
+          id: uid,
+          createdAt: data['createdAt']?.toDate() || new Date(),
+          updatedAt: data['updatedAt']?.toDate() || new Date()
+        } as User;
+      }
+      
+      return null;
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Mettre à jour le profil utilisateur
+   */
+  async updateUserProfile(updates: Partial<User>): Promise<void> {
+    const currentUser = this.currentUserSubject.value;
+    if (!currentUser) throw new Error('Utilisateur non connecté');
+
+    try {
+      const userRef = doc(this.firestore, 'users', currentUser.id);
+      await updateDoc(userRef, {
+        ...updates,
+        updatedAt: Timestamp.now()
+      });
+
+      // Mettre à jour le sujet
+      this.currentUserSubject.next({
+        ...currentUser,
+        ...updates,
+        updatedAt: new Date()
+      });
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour du profil:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Marquer le quiz comme complété
+   */
+  async markQuizCompleted(quizResult: any): Promise<void> {
+    const currentUser = this.currentUserSubject.value;
+    if (!currentUser) throw new Error('Utilisateur non connecté');
+
+    try {
+      await this.updateUserProfile({
+        quizCompleted: true,
+        quizResult: quizResult
+      });
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde du quiz:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Récupérer l'utilisateur actuel
+   */
+  getCurrentUser(): User | null {
     return this.currentUserSubject.value;
+  }
+
+  /**
+   * Vérifier si l'utilisateur est authentifié
+   */
+  isAuthenticated(): boolean {
+    return this.isAuthenticatedSubject.value;
+  }
+
+  /**
+   * Gérer les erreurs d'authentification
+   */
+  private handleAuthError(error: any): Error {
+    let message = 'Une erreur est survenue';
+
+    switch (error.code) {
+      case 'auth/email-already-in-use':
+        message = 'Cette adresse email est déjà utilisée';
+        break;
+      case 'auth/invalid-email':
+        message = 'Adresse email invalide';
+        break;
+      case 'auth/operation-not-allowed':
+        message = 'Opération non autorisée';
+        break;
+      case 'auth/weak-password':
+        message = 'Le mot de passe est trop faible (minimum 6 caractères)';
+        break;
+      case 'auth/user-disabled':
+        message = 'Ce compte a été désactivé';
+        break;
+      case 'auth/user-not-found':
+        message = 'Aucun compte trouvé avec cette adresse email';
+        break;
+      case 'auth/wrong-password':
+        message = 'Mot de passe incorrect';
+        break;
+      case 'auth/too-many-requests':
+        message = 'Trop de tentatives. Veuillez réessayer plus tard';
+        break;
+      default:
+        message = error.message || 'Une erreur est survenue';
+    }
+
+    return new Error(message);
+  }
+
+  /**
+   * Récupérer tous les utilisateurs (pour l'admin)
+   */
+  async getAllUsers(): Promise<User[]> {
+    try {
+      const usersCollection = collection(this.firestore, 'users');
+      const querySnapshot = await getDocs(usersCollection);
+      
+      return querySnapshot.docs.map((doc: any) => {
+        const data = doc.data();
+        return {
+          ...data,
+          id: doc.id,
+          createdAt: data['createdAt']?.toDate() || new Date(),
+          updatedAt: data['updatedAt']?.toDate() || new Date()
+        } as User;
+      });
+    } catch (error) {
+      console.error('Erreur lors de la récupération des utilisateurs:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Récupérer les statistiques des utilisateurs
+   */
+  async getUserStats(): Promise<{
+    total: number;
+    withQuiz: number;
+    withEnrollments: number;
+    recent: number;
+  }> {
+    try {
+      const users = await this.getAllUsers();
+      const now = new Date();
+      const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+      return {
+        total: users.length,
+        withQuiz: users.filter(u => u.quizCompleted).length,
+        withEnrollments: users.filter(u => u.enrolledFormations.length > 0).length,
+        recent: users.filter(u => u.createdAt >= sevenDaysAgo).length
+      };
+    } catch (error) {
+      console.error('Erreur lors du calcul des statistiques:', error);
+      throw error;
+    }
   }
 }

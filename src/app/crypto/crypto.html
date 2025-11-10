@@ -1,4 +1,511 @@
-<div class="Crypto">
-  <h2>Crypto</h2>
-  <p>Bienvenue dans la section crypto-monnaies !</p>
-</div> 
+<div class="crypto-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-badge">🚀 Nouvelle Ère Financière</div>
+      <h1 class="hero-title">Découvrez l'Univers Crypto & Blockchain</h1>
+      <p class="hero-description">
+        La révolution financière est en marche. Rejoignez des millions de personnes qui ont déjà embrassé 
+        la liberté financière grâce aux crypto-monnaies et à la technologie blockchain.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">2.5 Md+</div>
+          <div class="stat-label">Utilisateurs crypto</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">$2.3T</div>
+          <div class="stat-label">Capitalisation</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Marché ouvert</div>
+        </div>
+      </div>
+      <button class="cta-button" routerLink="/formation">
+        <i class="fas fa-rocket"></i>
+        Commencer ma formation
+      </button>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-card card-1">
+        <i class="fab fa-bitcoin"></i>
+        <span>Bitcoin</span>
+      </div>
+      <div class="floating-card card-2">
+        <i class="fab fa-ethereum"></i>
+        <span>Ethereum</span>
+      </div>
+      <div class="floating-card card-3">
+        <i class="fas fa-coins"></i>
+        <span>Altcoins</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Crypto vs Banque Section -->
+  <section class="comparison-section">
+    <div class="section-header">
+      <h2>🏦 Crypto vs Finance Traditionnelle</h2>
+      <p>Pourquoi la crypto révolutionne le monde financier</p>
+    </div>
+
+    <div class="comparison-grid">
+      <div class="comparison-card crypto-card">
+        <div class="card-icon">
+          <i class="fas fa-rocket"></i>
+        </div>
+        <h3>Crypto-monnaies</h3>
+        <ul class="advantages-list">
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Décentralisation totale</strong>
+              <p>Aucune banque ou gouvernement ne contrôle vos fonds</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Transactions 24/7</strong>
+              <p>Envoyez et recevez de l'argent à tout moment, partout dans le monde</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Frais ultra-réduits</strong>
+              <p>Transactions internationales à moins de 1% de frais</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Transparence totale</strong>
+              <p>Toutes les transactions sont vérifiables sur la blockchain</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Propriété réelle</strong>
+              <p>Vous êtes votre propre banque, contrôle total de vos actifs</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Potentiel de croissance</strong>
+              <p>Rendements pouvant atteindre +1000% sur certains actifs</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Accessibilité universelle</strong>
+              <p>Pas besoin de compte bancaire, juste une connexion internet</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Innovation continue</strong>
+              <p>DeFi, NFT, Metaverse - nouvelles opportunités chaque jour</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="comparison-card bank-card">
+        <div class="card-icon">
+          <i class="fas fa-university"></i>
+        </div>
+        <h3>Finance Bancaire</h3>
+        <ul class="disadvantages-list">
+          <li>
+            <i class="fas fa-times-circle"></i>
+            <div>
+              <strong>Contrôle centralisé</strong>
+              <p>Les banques contrôlent et peuvent bloquer vos fonds</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-times-circle"></i>
+            <div>
+              <strong>Horaires limités</strong>
+              <p>Transactions uniquement pendant les heures ouvrables</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-times-circle"></i>
+            <div>
+              <strong>Frais élevés</strong>
+              <p>Virements internationaux : 5-15% + délais de 3-5 jours</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-times-circle"></i>
+            <div>
+              <strong>Opacité</strong>
+              <p>Impossible de vérifier les transactions des autres</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-times-circle"></i>
+            <div>
+              <strong>Propriété limitée</strong>
+              <p>La banque peut geler ou saisir vos fonds</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-times-circle"></i>
+            <div>
+              <strong>Rendements faibles</strong>
+              <p>Taux d'épargne : 0.5-2% par an (inflation > gains)</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-times-circle"></i>
+            <div>
+              <strong>Barrières d'entrée</strong>
+              <p>Documents, justificatifs, délais d'ouverture de compte</p>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-times-circle"></i>
+            <div>
+              <strong>Innovation lente</strong>
+              <p>Systèmes obsolètes, peu d'évolution technologique</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blockchain Section -->
+  <section class="blockchain-section">
+    <div class="section-header">
+      <h2>⛓️ La Technologie Blockchain</h2>
+      <p>La révolution technologique qui change le monde</p>
+    </div>
+
+    <div class="blockchain-content">
+      <div class="blockchain-intro">
+        <p class="intro-text">
+          La blockchain est une technologie de stockage et de transmission d'informations, transparente, 
+          sécurisée et fonctionnant sans organe central de contrôle. C'est un registre distribué et 
+          immuable qui révolutionne la façon dont nous échangeons de la valeur.
+        </p>
+      </div>
+
+      <div class="blockchain-features">
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Sécurité Maximale</h3>
+          <p>Cryptographie avancée et consensus distribué rendent la blockchain pratiquement inviolable</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>Décentralisation</h3>
+          <p>Aucun point de défaillance unique, le réseau est réparti sur des milliers de nœuds</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>Immutabilité</h3>
+          <p>Une fois enregistrées, les données ne peuvent plus être modifiées ou supprimées</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👁️</div>
+          <h3>Transparence</h3>
+          <p>Toutes les transactions sont publiques et vérifiables par n'importe qui</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Smart Contracts</h3>
+          <p>Contrats auto-exécutables qui s'activent automatiquement selon des conditions prédéfinies</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Traçabilité</h3>
+          <p>Suivi complet de l'historique de chaque transaction depuis l'origine</p>
+        </div>
+      </div>
+
+      <div class="blockchain-applications">
+        <h3>Applications de la Blockchain</h3>
+        <div class="applications-grid">
+          <div class="app-item">
+            <i class="fas fa-coins"></i>
+            <span>Crypto-monnaies</span>
+          </div>
+          <div class="app-item">
+            <i class="fas fa-file-contract"></i>
+            <span>Smart Contracts</span>
+          </div>
+          <div class="app-item">
+            <i class="fas fa-palette"></i>
+            <span>NFT & Art Digital</span>
+          </div>
+          <div class="app-item">
+            <i class="fas fa-gamepad"></i>
+            <span>Gaming & Metaverse</span>
+          </div>
+          <div class="app-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Finance Décentralisée (DeFi)</span>
+          </div>
+          <div class="app-item">
+            <i class="fas fa-box"></i>
+            <span>Supply Chain</span>
+          </div>
+          <div class="app-item">
+            <i class="fas fa-heartbeat"></i>
+            <span>Santé & Données médicales</span>
+          </div>
+          <div class="app-item">
+            <i class="fas fa-vote-yea"></i>
+            <span>Vote électronique</span>
+          </div>
+          <div class="app-item">
+            <i class="fas fa-home"></i>
+            <span>Immobilier tokenisé</span>
+          </div>
+          <div class="app-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Identité numérique</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opportunités Section -->
+  <section class="opportunities-section">
+    <div class="section-header">
+      <h2>💼 Opportunités de Carrière & Business</h2>
+      <p>Des métiers d'avenir avec des revenus exceptionnels</p>
+    </div>
+
+    <div class="opportunities-grid">
+      <!-- Métiers -->
+      <div class="opportunity-category">
+        <h3><i class="fas fa-briefcase"></i> Métiers Crypto & Blockchain</h3>
+        <div class="opportunity-cards">
+          <div class="opportunity-card">
+            <div class="card-header">
+              <i class="fas fa-code"></i>
+              <h4>Développeur Blockchain</h4>
+            </div>
+            <p class="salary">💰 80 000 - 150 000€/an</p>
+            <ul>
+              <li>Développement de smart contracts</li>
+              <li>Création de DApps</li>
+              <li>Audit de sécurité blockchain</li>
+            </ul>
+            <div class="demand-badge high">Demande très élevée</div>
+          </div>
+
+          <div class="opportunity-card">
+            <div class="card-header">
+              <i class="fas fa-chart-line"></i>
+              <h4>Trader Crypto</h4>
+            </div>
+            <p class="salary">💰 50 000 - 200 000€+/an</p>
+            <ul>
+              <li>Trading spot et futures</li>
+              <li>Analyse technique et fondamentale</li>
+              <li>Gestion de portefeuille</li>
+            </ul>
+            <div class="demand-badge high">Revenus illimités</div>
+          </div>
+
+          <div class="opportunity-card">
+            <div class="card-header">
+              <i class="fas fa-shield-alt"></i>
+              <h4>Auditeur Blockchain</h4>
+            </div>
+            <p class="salary">💰 70 000 - 130 000€/an</p>
+            <ul>
+              <li>Audit de smart contracts</li>
+              <li>Sécurité des protocoles DeFi</li>
+              <li>Conseil en cybersécurité</li>
+            </ul>
+            <div class="demand-badge high">Très recherché</div>
+          </div>
+
+          <div class="opportunity-card">
+            <div class="card-header">
+              <i class="fas fa-bullhorn"></i>
+              <h4>Community Manager Crypto</h4>
+            </div>
+            <p class="salary">💰 40 000 - 80 000€/an</p>
+            <ul>
+              <li>Animation de communautés</li>
+              <li>Marketing crypto</li>
+              <li>Gestion de réseaux sociaux</li>
+            </ul>
+            <div class="demand-badge medium">Forte demande</div>
+          </div>
+
+          <div class="opportunity-card">
+            <div class="card-header">
+              <i class="fas fa-graduation-cap"></i>
+              <h4>Formateur Crypto</h4>
+            </div>
+            <p class="salary">💰 45 000 - 100 000€/an</p>
+            <ul>
+              <li>Création de formations</li>
+              <li>Coaching personnalisé</li>
+              <li>Conférences et webinaires</li>
+            </ul>
+            <div class="demand-badge medium">En croissance</div>
+          </div>
+
+          <div class="opportunity-card">
+            <div class="card-header">
+              <i class="fas fa-balance-scale"></i>
+              <h4>Consultant Blockchain</h4>
+            </div>
+            <p class="salary">💰 60 000 - 120 000€/an</p>
+            <ul>
+              <li>Conseil stratégique</li>
+              <li>Intégration blockchain</li>
+              <li>Transformation digitale</li>
+            </ul>
+            <div class="demand-badge high">Très demandé</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business -->
+      <div class="opportunity-category">
+        <h3><i class="fas fa-rocket"></i> Opportunités Business</h3>
+        <div class="opportunity-cards">
+          <div class="opportunity-card business-card">
+            <div class="card-header">
+              <i class="fas fa-exchange-alt"></i>
+              <h4>Plateforme d'Échange</h4>
+            </div>
+            <p class="potential">🎯 Potentiel : Très élevé</p>
+            <ul>
+              <li>Création d'exchange crypto</li>
+              <li>Revenus sur les frais de transaction</li>
+              <li>Modèle récurrent et scalable</li>
+            </ul>
+            <div class="investment-badge">💵 Investissement moyen</div>
+          </div>
+
+          <div class="opportunity-card business-card">
+            <div class="card-header">
+              <i class="fas fa-coins"></i>
+              <h4>Staking & Yield Farming</h4>
+            </div>
+            <p class="potential">🎯 Potentiel : Élevé</p>
+            <ul>
+              <li>Revenus passifs 5-20% APY</li>
+              <li>Staking de crypto-monnaies</li>
+              <li>Farming de tokens DeFi</li>
+            </ul>
+            <div class="investment-badge">💵 Capital variable</div>
+          </div>
+
+          <div class="opportunity-card business-card">
+            <div class="card-header">
+              <i class="fas fa-palette"></i>
+              <h4>Marketplace NFT</h4>
+            </div>
+            <p class="potential">🎯 Potentiel : Très élevé</p>
+            <ul>
+              <li>Vente d'art digital</li>
+              <li>Collections NFT</li>
+              <li>Royalties automatiques</li>
+            </ul>
+            <div class="investment-badge">💵 Faible à moyen</div>
+          </div>
+
+          <div class="opportunity-card business-card">
+            <div class="card-header">
+              <i class="fas fa-robot"></i>
+              <h4>Bot de Trading</h4>
+            </div>
+            <p class="potential">🎯 Potentiel : Élevé</p>
+            <ul>
+              <li>Trading automatisé 24/7</li>
+              <li>Arbitrage entre exchanges</li>
+              <li>Vente de signaux de trading</li>
+            </ul>
+            <div class="investment-badge">💵 Moyen</div>
+          </div>
+
+          <div class="opportunity-card business-card">
+            <div class="card-header">
+              <i class="fas fa-newspaper"></i>
+              <h4>Média Crypto</h4>
+            </div>
+            <p class="potential">🎯 Potentiel : Moyen à élevé</p>
+            <ul>
+              <li>Blog/Newsletter crypto</li>
+              <li>Chaîne YouTube/Podcast</li>
+              <li>Monétisation via publicité</li>
+            </ul>
+            <div class="investment-badge">💵 Faible</div>
+          </div>
+
+          <div class="opportunity-card business-card">
+            <div class="card-header">
+              <i class="fas fa-server"></i>
+              <h4>Mining & Validation</h4>
+            </div>
+            <p class="potential">🎯 Potentiel : Moyen</p>
+            <ul>
+              <li>Minage de crypto-monnaies</li>
+              <li>Validation de blocs (PoS)</li>
+              <li>Revenus en crypto</li>
+            </ul>
+            <div class="investment-badge">💵 Élevé</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>🚀 Prêt à Rejoindre la Révolution Crypto ?</h2>
+      <p>
+        Ne restez pas spectateur de cette révolution financière. Formez-vous dès aujourd'hui 
+        et saisissez les opportunités exceptionnelles qu'offre l'univers crypto et blockchain.
+      </p>
+      <div class="cta-benefits">
+        <div class="benefit">
+          <i class="fas fa-check-circle"></i>
+          <span>Formation complète en 4 mois</span>
+        </div>
+        <div class="benefit">
+          <i class="fas fa-check-circle"></i>
+          <span>Accompagnement par des experts</span>
+        </div>
+        <div class="benefit">
+          <i class="fas fa-check-circle"></i>
+          <span>Certification reconnue</span>
+        </div>
+        <div class="benefit">
+          <i class="fas fa-check-circle"></i>
+          <span>Accès à vie aux ressources</span>
+        </div>
+      </div>
+      <div class="cta-buttons">
+        <button class="btn-primary" routerLink="/formation">
+          <i class="fas fa-graduation-cap"></i>
+          Voir la formation Crypto & Blockchain
+        </button>
+        <button class="btn-secondary" routerLink="/quiz">
+          <i class="fas fa-compass"></i>
+          Faire le test d'orientation
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,4 +1,53 @@
-# NccFrontend
+# NCC-Academy - Plateforme d'Apprentissage en Ligne
+
+Plateforme d'apprentissage en ligne axée sur les métiers du numérique monétisables, offrant une expérience utilisateur personnalisée, pratique et orientée vers le marché du travail.
+
+## 🎯 Vision du Projet
+
+Transformer la passion des apprenants en compétence monétisable via un parcours structuré, soutenu par la technologie et l'accompagnement humain.
+
+## ✨ Fonctionnalités Principales
+
+### Phase 1 : Personnalisation et Orientation
+- **Test d'Orientation Express** : Quiz de 3 minutes pour identifier le parcours idéal
+- **Recommandations Personnalisées** : Analyse des objectifs, intérêts et expérience
+- **Message Coach Virtuel** : Retour personnalisé et motivant
+
+### Phase 2 : Architecture Technique
+- **Frontend** : Angular 20 avec composants standalone
+- **Backend** : Node.js/Express (à venir)
+- **Base de données** : Firebase/Firestore
+- **Déploiement** : Vercel (frontend), Google Cloud Platform (backend)
+- **PWA** : Application accessible sur tous les appareils
+
+### Phase 3 : Contenu et Apprentissage
+- **Modules Structurés** : Parcours progressif avec prérequis
+- **Micro-Projets** : Résultats tangibles dès le premier module
+- **Gamification** : Points, badges et défis
+- **Projet Final Monétisable** : Création d'une application vendable
+- **Mentorat** : Accompagnement par des experts du domaine
+
+## 🚀 Formations Disponibles
+
+1. **Développeur Web Full-Stack** (Angular, Node.js)
+2. **Spécialiste Crypto & Blockchain**
+3. **Responsable Marketing Digital** (SEO/SEA)
+4. **E-Commerçant Professionnel**
+5. **UX/UI Designer** (Figma, Design Thinking)
+6. **Data Analyst / Scientiste des Données**
+7. **Développeur d'Applications Mobiles**
+8. **Spécialiste en Cybersécurité**
+9. **Community Manager / Social Media Strategist**
+10. **Gestionnaire de Projet Digital / Scrum Master**
+
+## 🛠️ Stack Technique
+
+- **Angular 20** - Framework frontend
+- **TypeScript** - Langage de programmation
+- **Angular Material** - Composants UI
+- **Firebase** - Backend as a Service
+- **RxJS** - Programmation réactive
+- **Vercel** - Déploiement et hosting
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.5.
 

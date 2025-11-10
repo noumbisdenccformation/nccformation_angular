@@ -1,0 +1,136 @@
+<div class="connexion-container">
+  <div class="connexion-wrapper">
+    <!-- Carte de connexion -->
+    <div class="connexion-card">
+      
+      <!-- En-tête -->
+      <div class="card-header">
+        <div class="logo-circle">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h1 class="main-title">NCC Formation</h1>
+        <p class="subtitle">Bienvenue ! Connectez-vous pour continuer</p>
+      </div>
+
+      <!-- Contenu du formulaire -->
+      <div class="card-content">
+        <!-- Message d'erreur -->
+        <div class="error-message" *ngIf="error()">
+          <i class="fas fa-exclamation-circle"></i>
+          <span>{{ error() }}</span>
+        </div>
+
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="login-form">
+          <!-- Champ Identifiant -->
+          <div class="form-group">
+            <label for="identifier">
+              <i class="fas fa-envelope"></i>
+              Adresse Email ou Numéro de Téléphone
+            </label>
+            <input
+              type="text"
+              id="identifier"
+              formControlName="identifier"
+              placeholder="exemple@email.com ou 6XXXXXXXX"
+              [class.error]="authForm.get('identifier')?.invalid && authForm.get('identifier')?.touched"
+            >
+            <p class="error-text" *ngIf="authForm.get('identifier')?.invalid && authForm.get('identifier')?.touched">
+              <i class="fas fa-exclamation-circle"></i>
+              <span *ngIf="authForm.get('identifier')?.errors?.['required']">L'identifiant est requis</span>
+              <span *ngIf="authForm.get('identifier')?.errors?.['invalidFormat']">Format invalide</span>
+            </p>
+          </div>
+
+          <!-- Champ Mot de passe -->
+          <div class="form-group">
+            <label for="password">
+              <i class="fas fa-lock"></i>
+              Mot de passe
+            </label>
+            <div class="password-wrapper">
+              <input
+                [type]="showPassword() ? 'text' : 'password'"
+                id="password"
+                formControlName="password"
+                placeholder="••••••••"
+                [class.error]="authForm.get('password')?.invalid && authForm.get('password')?.touched"
+              >
+              <button type="button" class="toggle-password" (click)="togglePassword()">
+                <i [class]="showPassword() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+              </button>
+            </div>
+            <p class="error-text" *ngIf="authForm.get('password')?.invalid && authForm.get('password')?.touched">
+              <i class="fas fa-exclamation-circle"></i>
+              <span *ngIf="authForm.get('password')?.errors?.['required']">Le mot de passe est requis</span>
+              <span *ngIf="authForm.get('password')?.errors?.['minlength']">Minimum 6 caractères</span>
+            </p>
+          </div>
+
+          <!-- Options -->
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox">
+              <span>Se souvenir de moi</span>
+            </label>
+            <a href="#" class="forgot-link">Mot de passe oublié ?</a>
+          </div>
+
+          <!-- Bouton de connexion -->
+          <button type="submit" class="btn-submit" [disabled]="authForm.invalid || isLoading()">
+            <i *ngIf="isLoading()" class="fas fa-spinner fa-spin"></i>
+            <i *ngIf="!isLoading()" class="fas fa-sign-in-alt"></i>
+            <span *ngIf="isLoading()">Connexion en cours...</span>
+            <span *ngIf="!isLoading()">Se connecter</span>
+          </button>
+        </form>
+
+        <!-- Séparateur -->
+        <div class="divider">
+          <span>ou continuez avec</span>
+        </div>
+
+        <!-- Connexion sociale -->
+        <div class="social-buttons">
+          <button type="button" class="btn-social btn-google">
+            <i class="fab fa-google"></i>
+            Continuer avec Google
+          </button>
+          <button type="button" class="btn-social btn-facebook">
+            <i class="fab fa-facebook"></i>
+            Continuer avec Facebook
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="card-footer">
+        <p class="footer-text">
+          Pas encore de compte ?
+          <a routerLink="/inscrire">S'inscrire gratuitement →</a>
+        </p>
+
+        <!-- Avantages -->
+        <div class="benefits">
+          <div class="benefit-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Accès instantané</span>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Suivi de progression</span>
+          </div>
+          <div class="benefit-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Certificats reconnus</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badge de sécurité -->
+    <div class="security-badge">
+      <i class="fas fa-shield-alt"></i>
+      <span>Vos données sont sécurisées et protégées</span>
+    </div>
+  </div>
+</div>

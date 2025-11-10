@@ -1,17 +1,29 @@
-<!-- Hero Section -->
-<section class="hero-formation">
-  <div class="container">
+<!-- Vue Liste des Formations -->
+<div class="formations-container" *ngIf="!selectedFormation">
+  <!-- Hero Section -->
+  <section class="hero-formation">
     <div class="hero-content">
-      <h1>Formations Professionnelles</h1>
-      <p>Développez vos compétences avec nos formations certifiantes</p>
+      <h1>🎓 Formations Professionnelles NCC-Academy</h1>
+      <p>Transformez votre passion en compétence monétisable</p>
+      
+      <!-- Barre de recherche -->
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input 
+          type="text" 
+          placeholder="Rechercher une formation, compétence ou technologie..."
+          (input)="onSearch($event)"
+        >
+      </div>
+      
       <div class="hero-stats">
         <div class="stat">
-          <span class="number">2500+</span>
-          <span class="label">Étudiants</span>
+          <span class="number">{{ formations.length }}</span>
+          <span class="label">Formations</span>
         </div>
         <div class="stat">
-          <span class="number">50+</span>
-          <span class="label">Formations</span>
+          <span class="number">1,247+</span>
+          <span class="label">Étudiants</span>
         </div>
         <div class="stat">
           <span class="number">4.8/5</span>
@@ -19,92 +31,198 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Categories Section -->
-<section class="categories-section">
-  <div class="container">
-    <h2>Catégories Populaires</h2>
+  <!-- Categories Section -->
+  <section class="categories-section">
+    <h2>📚 Catégories</h2>
     <div class="categories-grid">
-      <div *ngFor="let category of categories" class="category-card">
+      <div 
+        *ngFor="let category of categories" 
+        class="category-card"
+        [class.active]="selectedCategory === category.id"
+        (click)="filterByCategory(category.id)"
+      >
         <div class="category-icon">{{category.icon}}</div>
         <h3>{{category.name}}</h3>
-        <p>{{category.count}} formations</p>
+        <p>{{category.count}} formation(s)</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Formations Section -->
-<section class="formations-section">
-  <div class="container">
+  <!-- Formations Section -->
+  <section class="formations-section">
     <div class="section-header">
-      <h2>Nos Formations Phares</h2>
-      <p>Choisissez parmi nos formations les plus demandées</p>
+      <h2>🚀 {{ filteredFormations.length }} Formation(s) Disponible(s)</h2>
+      <p *ngIf="selectedCategory !== 'all'">Catégorie : {{ getCategoryName() }}</p>
     </div>
     
-    <div class="formations-grid">
-      <div *ngFor="let formation of formations" class="formation-card">
-        <div class="card-image">
-          <img [src]="formation.image" [alt]="formation.title">
-          <div class="price-badge">{{formation.price}} FCFA</div>
+    <!-- Loading State -->
+    <div class="loading-state" *ngIf="isLoading">
+      <div class="spinner"></div>
+      <p>Chargement des formations...</p>
+    </div>
+    
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!isLoading && filteredFormations.length === 0">
+      <div class="empty-icon">🔍</div>
+      <h3>Aucune formation trouvée</h3>
+      <p>Essayez de modifier vos critères de recherche</p>
+      <button class="btn-secondary" (click)="filterByCategory('all')">Voir toutes les formations</button>
+    </div>
+    
+    <!-- Formations Grid -->
+    <div class="formations-grid" *ngIf="!isLoading && filteredFormations.length > 0">
+      <div *ngFor="let formation of filteredFormations" class="formation-card" (click)="viewFormationDetails(formation.id)">
+        <div class="card-badge" *ngIf="formation.isFeatured">
+          <i class="fas fa-star"></i> Populaire
         </div>
         
-        <div class="card-content">
-          <div class="card-header">
-            <h3>{{formation.title}}</h3>
-            <div class="rating">
-              <span class="stars">⭐⭐⭐⭐⭐</span>
-              <span class="rating-number">({{formation.rating}})</span>
-            </div>
+        <div class="card-header">
+          <h3>{{formation.title}}</h3>
+          <div class="rating">
+            <span class="stars">⭐</span>
+            <span class="rating-number">{{formation.rating}} ({{formation.reviewCount}})</span>
           </div>
-          
-          <p class="description">{{formation.description}}</p>
-          
-          <div class="card-meta">
-            <div class="meta-item">
-              <i class="fas fa-clock"></i>
-              <span>{{formation.duration}}</span>
-            </div>
-            <div class="meta-item">
-              <i class="fas fa-signal"></i>
-              <span>{{formation.level}}</span>
-            </div>
-            <div class="meta-item">
-              <i class="fas fa-users"></i>
-              <span>{{formation.students}} étudiants</span>
-            </div>
+        </div>
+        
+        <p class="description">{{formation.description}}</p>
+        
+        <div class="card-meta">
+          <div class="meta-item">
+            <i class="fas fa-clock"></i>
+            <span>{{formation.duration}}</span>
           </div>
-          
-          <div class="features">
-            <span *ngFor="let feature of formation.features" class="feature-tag">
-              {{feature}}
+          <div class="meta-item">
+            <span class="level-badge" [ngClass]="getLevelBadgeClass(formation.level)">
+              {{getLevelLabel(formation.level)}}
             </span>
           </div>
-          
-          <div class="card-footer">
-            <div class="instructor">
-              <span>Par {{formation.instructor}}</span>
-            </div>
-            <button class="btn-enroll">S'inscrire maintenant</button>
+          <div class="meta-item">
+            <i class="fas fa-users"></i>
+            <span>{{formation.enrollmentCount}} inscrits</span>
           </div>
+        </div>
+        
+        <div class="features">
+          <span *ngFor="let tag of formation.tags.slice(0, 3)" class="feature-tag">
+            {{tag}}
+          </span>
+        </div>
+        
+        <div class="card-footer">
+          <button class="btn-enroll btn-full" (click)="enrollInFormation(formation.id); $event.stopPropagation()">
+            S'inscrire maintenant <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Vue Détail d'une Formation -->
+<div class="formation-detail" *ngIf="selectedFormation">
+  <button class="back-button" (click)="backToList()">
+    <i class="fas fa-arrow-left"></i> Retour aux formations
+  </button>
+  
+  <div class="detail-hero">
+    <div class="detail-content">
+      <div class="breadcrumb">
+        <span>Formations</span> / <span>{{selectedFormation.title}}</span>
+      </div>
+      <h1>{{selectedFormation.title}}</h1>
+      <p class="subtitle">{{selectedFormation.description}}</p>
+      
+      <div class="detail-meta">
+        <div class="meta-item">
+          <i class="fas fa-star"></i>
+          <span>{{selectedFormation.rating}} ({{selectedFormation.reviewCount}} avis)</span>
+        </div>
+        <div class="meta-item">
+          <i class="fas fa-users"></i>
+          <span>{{selectedFormation.enrollmentCount}} inscrits</span>
+        </div>
+        <div class="meta-item">
+          <span class="level-badge" [ngClass]="getLevelBadgeClass(selectedFormation.level)">
+            {{getLevelLabel(selectedFormation.level)}}
+          </span>
+        </div>
+      </div>
+      
+      <div class="detail-actions">
+        <button class="btn-primary btn-large" (click)="enrollInFormation(selectedFormation.id)">
+          <i class="fas fa-rocket"></i> S'inscrire maintenant
+        </button>
+        <p class="enrollment-info">
+          <i class="fas fa-info-circle"></i> Formation gratuite - Accès immédiat après inscription
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="detail-body">
+    <div class="detail-main">
+      <section class="detail-section">
+        <h2>📖 Description</h2>
+        <p>{{selectedFormation.longDescription}}</p>
+      </section>
+      
+      <section class="detail-section">
+        <h2>🎯 Objectifs d'apprentissage</h2>
+        <ul class="objectives-list">
+          <li *ngFor="let objective of selectedFormation.learningObjectives">
+            <i class="fas fa-check-circle"></i> {{objective}}
+          </li>
+        </ul>
+      </section>
+      
+      <section class="detail-section">
+        <h2>👥 Public cible</h2>
+        <ul class="audience-list">
+          <li *ngFor="let audience of selectedFormation.targetAudience">
+            <i class="fas fa-user"></i> {{audience}}
+          </li>
+        </ul>
+      </section>
+      
+      <section class="detail-section" *ngIf="selectedFormation.prerequisites.length > 0">
+        <h2>📋 Prérequis</h2>
+        <ul class="prerequisites-list">
+          <li *ngFor="let prereq of selectedFormation.prerequisites">
+            <i class="fas fa-check"></i> {{prereq}}
+          </li>
+        </ul>
+      </section>
+    </div>
+    
+    <div class="detail-sidebar">
+      <div class="sidebar-card">
+        <h3>✨ Cette formation inclut</h3>
+        <ul class="includes-list">
+          <li><i class="fas fa-clock"></i> {{selectedFormation.duration}} de contenu</li>
+          <li><i class="fas fa-infinity"></i> Accès illimité</li>
+          <li *ngIf="selectedFormation.certification">
+            <i class="fas fa-certificate"></i> Certificat de fin
+          </li>
+          <li *ngIf="selectedFormation.mentorRequired">
+            <i class="fas fa-user-tie"></i> Mentorat inclus
+          </li>
+          <li *ngIf="selectedFormation.finalProjectRequired">
+            <i class="fas fa-project-diagram"></i> Projet final monétisable
+          </li>
+          <li><i class="fas fa-mobile-alt"></i> Accessible mobile & desktop</li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-card">
+        <h3>🏷️ Technologies</h3>
+        <div class="tags-cloud">
+          <span *ngFor="let tag of selectedFormation.tags" class="tag">
+            {{tag}}
+          </span>
         </div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- CTA Section -->
-<section class="cta-formation">
-  <div class="container">
-    <div class="cta-content">
-      <h2>Prêt à commencer votre parcours ?</h2>
-      <p>Rejoignez des milliers d'étudiants qui ont transformé leur carrière</p>
-      <div class="cta-buttons">
-        <button class="btn btn-primary">Voir toutes les formations</button>
-        <button class="btn btn-secondary">Demander un conseil</button>
-      </div>
-    </div>
-  </div>
-</section>
+</div>

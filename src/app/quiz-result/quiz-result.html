@@ -1,0 +1,172 @@
+<div class="result-container" *ngIf="result">
+  <!-- Confetti Animation -->
+  <div class="confetti-container" *ngIf="showConfetti">
+    <div class="confetti" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"></div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">🎯</div>
+      <h1 class="hero-title">Votre Parcours Personnalisé</h1>
+      <p class="hero-subtitle">Basé sur vos réponses, voici le parcours idéal pour vous</p>
+    </div>
+  </div>
+
+  <!-- Message Personnalisé -->
+  <div class="message-card">
+    <div class="message-icon">💌</div>
+    <div class="message-content">
+      <h3>Message de votre Coach NCC</h3>
+      <p class="personalized-message">{{ result.personalizedMessage }}</p>
+    </div>
+  </div>
+
+  <!-- Parcours Recommandé -->
+  <div class="path-card">
+    <div class="path-header">
+      <div class="path-badge">
+        <i class="fas fa-star"></i> Recommandé pour vous
+      </div>
+      <h2 class="path-title">{{ result.recommendedPath.title }}</h2>
+      <p class="path-description">{{ result.recommendedPath.description }}</p>
+    </div>
+
+    <div class="path-details">
+      <div class="detail-item">
+        <div class="detail-icon">⏱️</div>
+        <div class="detail-content">
+          <span class="detail-label">Durée</span>
+          <span class="detail-value">{{ result.recommendedPath.duration }}</span>
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <div class="detail-icon">📊</div>
+        <div class="detail-content">
+          <span class="detail-label">Niveau</span>
+          <span 
+            class="detail-value difficulty-badge"
+            [style.background-color]="getDifficultyColor(result.recommendedPath.difficulty)"
+          >
+            {{ getDifficultyLabel(result.recommendedPath.difficulty) }}
+          </span>
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <div class="detail-icon">👨‍🏫</div>
+        <div class="detail-content">
+          <span class="detail-label">Mentorat</span>
+          <span class="detail-value">
+            {{ result.recommendedPath.mentorRequired ? 'Inclus' : 'Optionnel' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="detail-item">
+        <div class="detail-icon">📚</div>
+        <div class="detail-content">
+          <span class="detail-label">Modules</span>
+          <span class="detail-value">{{ result.recommendedPath.modules.length }} modules</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modules Preview -->
+    <div class="modules-preview" *ngIf="result.recommendedPath.modules.length > 0">
+      <h3 class="modules-title">
+        <i class="fas fa-list-ul"></i> Aperçu du Programme
+      </h3>
+      <div class="modules-list">
+        <div 
+          class="module-item" 
+          *ngFor="let module of result.recommendedPath.modules.slice(0, 3)"
+        >
+          <div class="module-number">{{ module.order }}</div>
+          <div class="module-info">
+            <h4 class="module-title">{{ module.title }}</h4>
+            <p class="module-description">{{ module.description }}</p>
+            <div class="module-meta">
+              <span class="module-duration">
+                <i class="fas fa-clock"></i> {{ module.duration }}
+              </span>
+              <span class="module-projects" *ngIf="module.microProjects.length > 0">
+                <i class="fas fa-project-diagram"></i> 
+                {{ module.microProjects.length }} micro-projet(s)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="modules-more" *ngIf="result.recommendedPath.modules.length > 3">
+        + {{ result.recommendedPath.modules.length - 3 }} autres modules...
+      </p>
+    </div>
+
+    <!-- Premier Micro-Projet -->
+    <div class="first-project-highlight" *ngIf="result.recommendedPath.modules && result.recommendedPath.modules[0] && result.recommendedPath.modules[0].microProjects && result.recommendedPath.modules[0].microProjects[0]">
+      <div class="highlight-badge">🚀 Votre Premier Défi</div>
+      <h3>{{ result.recommendedPath.modules[0].microProjects[0].title }}</h3>
+      <p>{{ result.recommendedPath.modules[0].microProjects[0].description }}</p>
+      <div class="project-meta">
+        <span class="project-time">
+          <i class="fas fa-hourglass-half"></i>
+          {{ result.recommendedPath.modules[0].microProjects[0].estimatedTime }}
+        </span>
+        <span class="project-deliverable">
+          <i class="fas fa-check-circle"></i>
+          {{ result.recommendedPath.modules[0].microProjects[0].deliverable }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions-container">
+    <button class="btn-primary btn-large" (click)="startFormation()">
+      <i class="fas fa-rocket"></i>
+      Commencer ma Formation
+    </button>
+    <button class="btn-secondary" (click)="exploreOtherPaths()">
+      <i class="fas fa-compass"></i>
+      Explorer d'autres parcours
+    </button>
+    <button class="btn-link" (click)="retakeQuiz()">
+      <i class="fas fa-redo"></i>
+      Refaire le test
+    </button>
+  </div>
+
+  <!-- Garanties -->
+  <div class="guarantees-section">
+    <h3>🎯 Nos Garanties</h3>
+    <div class="guarantees-grid">
+      <div class="guarantee-item">
+        <div class="guarantee-icon">✅</div>
+        <h4>Résultat Tangible Rapide</h4>
+        <p>Premier projet concret en moins d'une semaine</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="guarantee-icon">👨‍🏫</div>
+        <h4>Accompagnement Expert</h4>
+        <p>Mentor dédié tout au long de votre parcours</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="guarantee-icon">💰</div>
+        <h4>Projet Monétisable</h4>
+        <p>Création d'un projet final vendable</p>
+      </div>
+      <div class="guarantee-item">
+        <div class="guarantee-icon">🎓</div>
+        <h4>Certification Reconnue</h4>
+        <p>Certificat valorisable sur le marché</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading-state" *ngIf="!result">
+  <div class="spinner"></div>
+  <p>Chargement de votre parcours...</p>
+</div>

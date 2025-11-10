@@ -1,0 +1,84 @@
+<div class="quiz-container">
+  <div class="quiz-wrapper" *ngIf="!showResult">
+    <!-- Header avec progression -->
+    <div class="quiz-header">
+      <div class="quiz-logo">
+        <h1>🎯 NCC-Academy</h1>
+        <p class="quiz-subtitle">Test d'Orientation Express</p>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="progress"></div>
+        </div>
+        <span class="progress-text">Question {{ currentQuestionIndex + 1 }} / {{ questions.length }}</span>
+      </div>
+    </div>
+
+    <!-- Question -->
+    <div class="question-container" [class.animating]="isAnimating">
+      <div class="question-number">Question {{ currentQuestionIndex + 1 }}</div>
+      <h2 class="question-text">{{ currentQuestion.question }}</h2>
+      
+      <div class="options-container" [class.multiple]="currentQuestion.type === 'multiple'">
+        <div 
+          *ngFor="let option of currentQuestion.options"
+          class="option-card"
+          [class.selected]="isSelected(option.value)"
+          (click)="selectOption(option.value)"
+        >
+          <div class="option-icon">{{ option.icon }}</div>
+          <div class="option-content">
+            <span class="option-label">{{ option.label }}</span>
+          </div>
+          <div class="option-check" *ngIf="isSelected(option.value)">
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint-text" *ngIf="currentQuestion.type === 'multiple'">
+        💡 Vous pouvez sélectionner plusieurs options
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="quiz-navigation">
+      <button 
+        class="btn-secondary"
+        (click)="previousQuestion()"
+        [disabled]="currentQuestionIndex === 0"
+      >
+        <i class="fas fa-arrow-left"></i> Précédent
+      </button>
+      
+      <button 
+        class="btn-primary"
+        (click)="nextQuestion()"
+        [disabled]="!canProceed()"
+      >
+        {{ currentQuestionIndex === questions.length - 1 ? 'Voir mon parcours' : 'Suivant' }}
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Écran de résultat -->
+  <div class="result-screen" *ngIf="showResult">
+    <div class="result-animation">
+      <div class="success-icon">🎉</div>
+      <h2>Analyse terminée !</h2>
+      <p>Nous avons créé votre parcours personnalisé</p>
+      
+      <div class="result-actions">
+        <button class="btn-primary btn-large" (click)="viewResults()">
+          <i class="fas fa-graduation-cap"></i>
+          Découvrir mon parcours
+        </button>
+        <button class="btn-secondary" (click)="restartQuiz()">
+          <i class="fas fa-redo"></i>
+          Recommencer le test
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

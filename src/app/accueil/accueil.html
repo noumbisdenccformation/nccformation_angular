@@ -1,133 +1,396 @@
 <div class="accueil-container">
-  <!-- Section Boutique -->
-  <div class="section-card boutique-section">
-    <div class="section-image">
-      <img src="assets/img/boutique1.png" alt="Boutique NCC">
-      <div class="section-overlay">
-        <i class="fas fa-shopping-cart"></i>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-badge">🎓 NCC Formation & Academy</div>
+      <h1 class="hero-title">Transformez Votre Avenir avec NCC-Academy</h1>
+      <p class="hero-subtitle">
+        Formations professionnelles • Produits Premium • Opportunités Business
+      </p>
+      <p class="hero-description">
+        Découvrez notre écosystème complet : formations certifiantes en numérique, 
+        produits Longrich de qualité et opportunités crypto avec Binance. 
+        Votre succès commence ici !
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Formations</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1200+</div>
+          <div class="stat-label">Étudiants</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">En ligne</div>
+        </div>
+      </div>
+      <div class="hero-buttons">
+        <button class="btn-primary" (click)="navigateTo('quiz')">
+          <i class="fas fa-compass"></i>
+          Test d'Orientation Gratuit
+        </button>
+        <button class="btn-secondary" (click)="navigateTo('formation')">
+          <i class="fas fa-graduation-cap"></i>
+          Voir les Formations
+        </button>
       </div>
     </div>
-    <div class="section-content">
-      <h2><i class="fas fa-shopping-cart"></i> Découvrez notre Boutique Premium</h2>
-      <p>Plongez dans notre <strong>collection exclusive</strong> où chaque produit est conçu pour allier qualité et innovation. De la mode aux gadgets technologiques, nous offrons une variété de choix pour satisfaire toutes vos envies. Chaque article est soigneusement sélectionné pour garantir une expérience unique et mémorable.</p>
-      <div class="section-features">
-        <span class="feature-tag">✨ Produits Premium</span>
-        <span class="feature-tag">🚚 Livraison Rapide</span>
-        <span class="feature-tag">📞 Support 24/7</span>
-      </div>
-      <button class="section-btn" (click)="navigateTo('boutique')">
-        Explorer la boutique <i class="fas fa-arrow-right"></i>
-      </button>
+    <div class="hero-visual">
+      <div class="floating-card card-1">💻 Dev Web</div>
+      <div class="floating-card card-2">₿ Crypto</div>
+      <div class="floating-card card-3">📱 Marketing</div>
+      <div class="floating-card card-4">🎨 Design</div>
+      <div class="floating-card card-5">🛒 E-commerce</div>
+      <div class="floating-card card-6">📊 Data Science</div>
     </div>
-  </div>
+  </section>
 
-  <!-- Section Ressources -->
-  <div class="section-card ressources-section">
-    <div class="section-image">
-      <img src="assets/img/ressource1.png" alt="Ressources NCC">
-      <div class="section-overlay">
-        <i class="fas fa-book"></i>
-      </div>
+  <!-- Nos Services Section -->
+  <section class="services-section">
+    <div class="section-header">
+      <h2>🎯 Nos Services & Produits</h2>
+      <p>Un écosystème complet pour votre réussite</p>
     </div>
-    <div class="section-content">
-      <h2><i class="fas fa-book"></i> Bibliothèque de Ressources Experts</h2>
-      <p>Accédez à une <strong>mine d'informations</strong> et de conseils pratiques grâce à notre section Ressources. Que vous recherchiez des articles de fond, des guides détaillés ou des tutoriels pas à pas, nous avons ce qu'il vous faut. Notre contenu est rédigé par des experts passionnés.</p>
-      <div class="section-features">
-        <span class="feature-tag">🎯 Guides Experts</span>
-        <span class="feature-tag">🎥 Tutoriels Vidéo</span>
-        <span class="feature-tag">🔄 Mises à jour</span>
+    <div class="services-grid">
+      <div class="service-card formations-card">
+        <div class="service-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3>Formations Certifiantes</h3>
+        <p>6 formations professionnelles en numérique avec certification reconnue</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Développement Web Full-Stack</li>
+          <li><i class="fas fa-check"></i> Crypto & Blockchain</li>
+          <li><i class="fas fa-check"></i> Marketing Digital</li>
+          <li><i class="fas fa-check"></i> Data Science & IA</li>
+          <li><i class="fas fa-check"></i> E-commerce & Design</li>
+        </ul>
+        <button class="service-btn" (click)="navigateTo('formation')">
+          Découvrir <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
-      <button class="section-btn" (click)="navigateTo('ressources')">
-        Accéder aux ressources <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-  </div>
 
-  <!-- Section Événements -->
-  <div class="section-card evenements-section">
-    <div class="section-image">
-      <img src="assets/img/evenements1.png" alt="Événements NCC">
-      <div class="section-overlay">
-        <i class="fas fa-calendar-alt"></i>
+      <div class="service-card longrich-card">
+        <div class="service-icon longrich-icon">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <h3>Produits Longrich</h3>
+        <p>Produits de bien-être et beauté de qualité supérieure</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Soins corporels premium</li>
+          <li><i class="fas fa-check"></i> Compléments alimentaires</li>
+          <li><i class="fas fa-check"></i> Cosmétiques naturels</li>
+          <li><i class="fas fa-check"></i> Opportunité de revenu</li>
+          <li><i class="fas fa-check"></i> Livraison rapide</li>
+        </ul>
+        <button class="service-btn" (click)="navigateTo('boutique')">
+          Voir la boutique <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
-    </div>
-    <div class="section-content">
-      <h2><i class="fas fa-calendar-alt"></i> Événements & Networking</h2>
-      <p>Restez informé des <strong>événements majeurs</strong> à ne pas manquer grâce à notre calendrier interactif. Participez à des conférences, ateliers et webinaires animés par des experts de renom. Rejoignez notre communauté et vivez des expériences enrichissantes.</p>
-      <div class="section-features">
-        <span class="feature-tag">🎤 Conférences</span>
-        <span class="feature-tag">🤝 Networking</span>
-        <span class="feature-tag">🎖️ Certificats</span>
-      </div>
-      <button class="section-btn" (click)="navigateTo('evenements')">
-        Voir les événements <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-  </div>
 
-  <!-- Section Crypto -->
-  <div class="section-card crypto-section">
-    <div class="section-image">
-      <img src="assets/img/crypto1.png" alt="Crypto NCC">
-      <div class="section-overlay">
-        <i class="fab fa-bitcoin"></i>
+      <div class="service-card binance-card">
+        <div class="service-icon binance-icon">
+          <i class="fab fa-bitcoin"></i>
+        </div>
+        <h3>Opportunités Crypto</h3>
+        <p>Profitez d'avantages exclusifs sur Binance via notre partenariat</p>
+        <ul class="service-features">
+          <li><i class="fas fa-check"></i> Lien de parrainage exclusif</li>
+          <li><i class="fas fa-check"></i> Bonus et réductions</li>
+          <li><i class="fas fa-check"></i> Formation trading incluse</li>
+          <li><i class="fas fa-check"></i> Support personnalisé</li>
+          <li><i class="fas fa-check"></i> Revenus passifs</li>
+        </ul>
+        <button class="service-btn" (click)="navigateTo('inscrire')">
+          Rejoindre NCC-Academy <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
     </div>
-    <div class="section-content">
-      <h2><i class="fab fa-bitcoin"></i> Crypto-monnaies & Trading Pro</h2>
-      <p>Plongez dans l'univers <strong>fascinant des crypto-monnaies</strong> avec notre section dédiée. Nous offrons des analyses approfondies des tendances du marché, des formations pour tous les niveaux et des cours spécialisés pour vous aider à maîtriser ce domaine en pleine expansion.</p>
-      <div class="section-features">
-        <span class="feature-tag">📈 Analyses Marché</span>
-        <span class="feature-tag">💰 Stratégies Trading</span>
-        <span class="feature-tag">🎯 Formations Pro</span>
-      </div>
-      <button class="section-btn" (click)="navigateTo('crypto')">
-        Explorer crypto <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-  </div>
+  </section>
 
-  <!-- Section Formation -->
-  <div class="section-card formation-section">
-    <div class="section-image">
-      <img src="assets/img/formations1.png" alt="Formations NCC">
-      <div class="section-overlay">
-        <i class="fas fa-graduation-cap"></i>
-      </div>
+  <!-- Formations Populaires -->
+  <section class="formations-section">
+    <div class="section-header">
+      <h2>🎓 Nos Formations Populaires</h2>
+      <p>Devenez expert dans les métiers du numérique les plus demandés</p>
     </div>
-    <div class="section-content">
-      <h2><i class="fas fa-graduation-cap"></i> Formations Certifiantes</h2>
-      <p>Rejoignez nos <strong>formations en numérique</strong> et développez vos compétences avec des experts du domaine. Nous proposons une variété de cours couvrant le développement web, le marketing digital, et la gestion de projets technologiques. Programmes immersifs et pratiques.</p>
-      <div class="section-features">
-        <span class="feature-tag">🎯 Experts Certifiés</span>
-        <span class="feature-tag">🏆 Certificats Reconnus</span>
-        <span class="feature-tag">👥 Réseau Pro</span>
+    <div class="formations-grid">
+      <div class="formation-card">
+        <div class="formation-badge">⭐ Populaire</div>
+        <div class="formation-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <h3>Développeur Web Full-Stack</h3>
+        <p class="formation-duration"><i class="fas fa-clock"></i> 6 mois</p>
+        <p class="formation-desc">Maîtrisez Angular, Node.js et créez des applications web complètes</p>
+        <div class="formation-tags">
+          <span>Angular</span>
+          <span>Node.js</span>
+          <span>MongoDB</span>
+        </div>
+        <button class="formation-btn" (click)="navigateTo('formation')">
+          En savoir plus <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
-      <button class="section-btn" (click)="navigateTo('formation')">
-        Voir les formations <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-  </div>
 
-  <!-- Section Coaching -->
-  <div class="section-card coaching-section">
-    <div class="section-image">
-      <img src="assets/img/web1.png" alt="Coaching NCC">
-      <div class="section-overlay">
-        <i class="fas fa-user-tie"></i>
+      <div class="formation-card">
+        <div class="formation-badge hot">🔥 Tendance</div>
+        <div class="formation-icon">
+          <i class="fab fa-bitcoin"></i>
+        </div>
+        <h3>Crypto & Blockchain</h3>
+        <p class="formation-duration"><i class="fas fa-clock"></i> 4 mois</p>
+        <p class="formation-desc">Trading, smart contracts et opportunités blockchain</p>
+        <div class="formation-tags">
+          <span>Trading</span>
+          <span>DeFi</span>
+          <span>NFT</span>
+        </div>
+        <button class="formation-btn" (click)="navigateTo('formation')">
+          En savoir plus <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <div class="formation-card">
+        <div class="formation-badge">💎 Premium</div>
+        <div class="formation-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3>Data Science & IA</h3>
+        <p class="formation-duration"><i class="fas fa-clock"></i> 6 mois</p>
+        <p class="formation-desc">Python, Machine Learning et Intelligence Artificielle</p>
+        <div class="formation-tags">
+          <span>Python</span>
+          <span>ML</span>
+          <span>TensorFlow</span>
+        </div>
+        <button class="formation-btn" (click)="navigateTo('formation')">
+          En savoir plus <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
     </div>
-    <div class="section-content">
-      <h2><i class="fas fa-user-tie"></i> Coaching Personnalisé</h2>
-      <p><strong>Nouveau !</strong> Découvrez nos formations en ligne. Développez vos compétences avec nos cours interactifs et rejoignez une communauté d'apprenants motivés. Profitez également de notre réseau professionnel pour échanger avec d'autres professionnels du secteur.</p>
-      <div class="section-features">
-        <span class="feature-tag">🎯 Accompagnement 1:1</span>
-        <span class="feature-tag">📈 Suivi Personnalisé</span>
-        <span class="feature-tag">🚀 Résultats Garantis</span>
-      </div>
-      <button class="section-btn" (click)="navigateTo('coaching')">
-        Découvrir le coaching <i class="fas fa-arrow-right"></i>
+    <div class="section-cta">
+      <button class="btn-view-all" (click)="navigateTo('formation')">
+        Voir toutes les formations <i class="fas fa-arrow-right"></i>
       </button>
     </div>
-  </div>
+  </section>
+
+  <!-- Opportunités Crypto avec Binance -->
+  <section class="binance-partnership">
+    <div class="partnership-content">
+      <div class="partnership-header">
+        <div class="binance-logo">
+          <i class="fab fa-bitcoin"></i>
+          <span>Opportunités Crypto</span>
+        </div>
+        <h2>Accédez aux Avantages Exclusifs Binance</h2>
+        <p class="partnership-subtitle">Inscrivez-vous sur NCC-Academy et recevez votre lien de parrainage personnalisé</p>
+      </div>
+
+      <div class="binance-benefits">
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <i class="fas fa-gift"></i>
+          </div>
+          <h3>Bonus de Bienvenue</h3>
+          <p>Jusqu'à 100 USDT offerts via notre lien partenaire</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <i class="fas fa-percentage"></i>
+          </div>
+          <h3>Réduction sur les Frais</h3>
+          <p>20% de réduction permanente sur vos frais de trading</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>Formation Gratuite</h3>
+          <p>Accès à notre formation trading crypto complète</p>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Accompagnement Personnalisé</h3>
+          <p>Notre équipe vous guide dans vos premiers pas</p>
+        </div>
+      </div>
+
+      <div class="binance-cta">
+        <button class="binance-btn" (click)="navigateTo('inscrire')">
+          <i class="fas fa-user-plus"></i>
+          Créer mon Compte NCC-Academy
+        </button>
+        <p class="cta-note">✨ Recevez votre lien Binance personnalisé par email après inscription</p>
+      </div>
+
+      <div class="binance-info">
+        <div class="info-card">
+          <h4>🌍 Partenariat Officiel</h4>
+          <p>Nous sommes partenaires officiels de Binance, la plus grande plateforme crypto</p>
+        </div>
+        <div class="info-card">
+          <h4>📧 Contact Régulier</h4>
+          <p>Restez informé des meilleures opportunités crypto par email</p>
+        </div>
+        <div class="info-card">
+          <h4>💰 Revenus Passifs</h4>
+          <p>Générez des revenus avec le trading et le parrainage</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Produits Longrich -->
+  <section class="longrich-section">
+    <div class="section-header">
+      <h2>🌿 Produits Longrich Premium</h2>
+      <p>Bien-être, beauté et opportunité business</p>
+    </div>
+
+    <div class="longrich-content">
+      <div class="longrich-intro">
+        <div class="longrich-logo">
+          <i class="fas fa-leaf"></i>
+          <h3>Longrich</h3>
+        </div>
+        <p>
+          Découvrez notre gamme exclusive de produits Longrich : soins corporels, 
+          compléments alimentaires et cosmétiques naturels de qualité supérieure. 
+          Profitez également de l'opportunité de devenir partenaire et générer des revenus.
+        </p>
+      </div>
+
+      <div class="longrich-categories">
+        <div class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-spa"></i>
+          </div>
+          <h4>Soins Corporels</h4>
+          <p>Crèmes, lotions et produits de soin premium</p>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h4>Compléments</h4>
+          <p>Vitamines et suppléments nutritionnels</p>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-magic"></i>
+          </div>
+          <h4>Cosmétiques</h4>
+          <p>Maquillage et produits de beauté naturels</p>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <h4>Opportunité Business</h4>
+          <p>Devenez distributeur et générez des revenus</p>
+        </div>
+      </div>
+
+      <div class="longrich-cta">
+        <button class="longrich-btn" (click)="navigateTo('boutique')">
+          <i class="fas fa-shopping-cart"></i>
+          Découvrir les produits Longrich
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pourquoi Nous Choisir -->
+  <section class="why-choose-section">
+    <div class="section-header">
+      <h2>💎 Pourquoi Choisir NCC-Academy ?</h2>
+      <p>Un écosystème complet pour votre succès</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <h3>Formations Certifiantes</h3>
+        <p>Certificats reconnus par les entreprises, formations pratiques avec projets réels</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Mentors Experts</h3>
+        <p>Accompagnement personnalisé par des professionnels actifs dans leur domaine</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3>100% En Ligne</h3>
+        <p>Apprenez à votre rythme, de n'importe où, sur tous vos appareils</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <h3>Opportunités Business</h3>
+        <p>Produits Longrich et partenariat Binance pour générer des revenus</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <i class="fas fa-infinity"></i>
+        </div>
+        <h3>Accès à Vie</h3>
+        <p>Accédez aux contenus et mises à jour sans limite de temps</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <i class="fas fa-headset"></i>
+        </div>
+        <h3>Support 24/7</h3>
+        <p>Assistance technique et pédagogique disponible à tout moment</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="final-cta">
+    <div class="cta-content">
+      <h2>🚀 Prêt à Transformer Votre Avenir ?</h2>
+      <p>
+        Rejoignez des milliers d'étudiants qui ont déjà commencé leur transformation. 
+        Formations, produits premium et opportunités business vous attendent.
+      </p>
+      <div class="cta-buttons">
+        <button class="btn-cta-primary" (click)="navigateTo('quiz')">
+          <i class="fas fa-compass"></i>
+          Commencer le Test d'Orientation
+        </button>
+        <button class="btn-cta-secondary" (click)="navigateTo('inscrire')">
+          <i class="fas fa-user-plus"></i>
+          Créer mon Compte Gratuit
+        </button>
+      </div>
+      <div class="cta-guarantees">
+        <div class="guarantee">
+          <i class="fas fa-check-circle"></i>
+          <span>Aucune carte bancaire requise</span>
+        </div>
+        <div class="guarantee">
+          <i class="fas fa-check-circle"></i>
+          <span>Accès immédiat</span>
+        </div>
+        <div class="guarantee">
+          <i class="fas fa-check-circle"></i>
+          <span>Satisfait ou remboursé</span>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

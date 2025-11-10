@@ -1,0 +1,328 @@
+/* * Styles pour le composant de connexion (src/app/connexion/connexion.ts)
+ * * Basé sur une structure flexbox pour un affichage "Split-Screen" sur desktop
+ * et un affichage "Stack" sur mobile.
+ */
+
+:host {
+    display: block;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.auth-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f7f9; /* Arrière-plan doux */
+    overflow: hidden;
+}
+
+.auth-card {
+    /* Colonne du formulaire - prend toute la largeur sur mobile */
+    flex: 1 1 100%;
+    max-width: 100%;
+    padding: 30px 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-illustration {
+    /* Colonne de l'illustration - visible uniquement sur grand écran */
+    display: none;
+    flex: 1 1 50%;
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); /* Indigo vibrant */
+    color: #ffffff;
+    padding: 50px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ---------------------- Médias Queries (Responsivité) ---------------------- */
+
+/* Tablette et Desktop (largeur > 768px) */
+@media (min-width: 768px) {
+    .auth-container {
+        align-items: center;
+    }
+    .auth-card {
+        flex: 1 1 450px;
+        max-width: 450px;
+        height: auto;
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        margin: 40px;
+    }
+    .auth-illustration {
+        display: flex;
+        min-height: 100vh;
+        max-width: 50vw; /* Utilise 50% de la largeur de l'écran */
+        padding: 80px;
+    }
+}
+
+/* ---------------------- Styles de la Carte ---------------------- */
+
+.auth-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.logo-section h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1f2937; /* Gris foncé */
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.auth-logo-icon {
+    font-size: 3rem;
+    color: #4f46e5;
+}
+
+.logo-section p {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+/* ---------------------- Formulaire ---------------------- */
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.input-group:focus-within {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 1px #4f46e5;
+}
+
+.input-group i {
+    padding: 12px;
+    color: #9ca3af;
+}
+
+.input-group input {
+    flex-grow: 1;
+    padding: 12px 10px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background-color: transparent;
+}
+
+.password-toggle {
+    background: none;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+    color: #4f46e5;
+    transition: color 0.2s;
+    outline: none;
+}
+
+.password-toggle:hover {
+    color: #3e33c7;
+}
+
+/* ---------------------- Options et Bouton ---------------------- */
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.checkbox-container input {
+    margin-right: 8px;
+}
+
+.forgot-password {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4f46e5;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-submit:hover {
+    background-color: #4338ca;
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.loading i {
+    margin-right: 10px;
+}
+
+/* ---------------------- Séparateur et Social Login ---------------------- */
+
+.auth-divider {
+    text-align: center;
+    margin: 25px 0;
+    position: relative;
+    color: #9ca3af;
+    font-size: 0.9rem;
+}
+
+.auth-divider span {
+    background-color: #ffffff;
+    padding: 0 15px;
+    position: relative;
+    z-index: 10;
+}
+
+.auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e5e7eb;
+    z-index: 5;
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-social {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d1d5db;
+    transition: background-color 0.2s;
+}
+
+.btn-social i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.btn-google {
+    background-color: white;
+    color: #4f46e5; /* Couleur principale */
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+    color: white;
+    border-color: #3b5998;
+}
+
+/* ---------------------- Footer ---------------------- */
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.95rem;
+    color: #6b7280;
+}
+
+.link-signup {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link-signup:hover {
+    text-decoration: underline;
+}
+
+/* ---------------------- Section Illustration ---------------------- */
+
+.illustration-content {
+    max-width: 400px;
+}
+
+.illustration-content h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.illustration-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.feature i {
+    font-size: 1.5rem;
+    color: #c7d2fe; /* Couleur claire pour le contraste */
+    margin-right: 15px;
+}

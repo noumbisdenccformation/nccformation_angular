@@ -1,109 +1,257 @@
-<div class="auth-container">
-  <div class="auth-card">
-    <div class="auth-header">
-      <div class="logo-section">
-        <img src="assets/img/logo-ncc.png" alt="NCC Formation" class="auth-logo">
-        <h1>Connexion</h1>
-        <p>Accédez à votre espace de formation</p>
-      </div>
-    </div>
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-    <form class="auth-form" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <div class="input-group">
-          <i class="fas fa-envelope"></i>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            [(ngModel)]="email"
-            placeholder="votre@email.com"
-            required
-          >
+/**
+ * Composant de Connexion
+ *
+ * Ce composant gère l'authentification en utilisant les Formulaires Réactifs
+ * et permet la connexion via l'Email OU le Numéro de Téléphone.
+ */
+@Component({
+  selector: 'app-connexion',
+  standalone: true,
+  // Ajout de ReactiveFormsModule et maintien de CommonModule/FormsModule
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  // Template intégré (basé sur votre connexion.html)
+  template: `
+    <!-- Votre structure HTML intégrée dans le composant -->
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <div class="logo-section">
+            <!-- Attention: L'accès aux assets locaux comme logo-ncc.png n'est pas garanti dans cet environnement -->
+            <!-- <img src="assets/img/logo-ncc.png" alt="NCC Formation" class="auth-logo"> -->
+            <h1>Connexion</h1>
+            <p>Accédez à votre espace de formation</p>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="password">Mot de passe</label>
-        <div class="input-group">
-          <i class="fas fa-lock"></i>
-          <input 
-            [type]="showPassword ? 'text' : 'password'" 
-            id="password" 
-            name="password" 
-            [(ngModel)]="password"
-            placeholder="Votre mot de passe"
-            required
-          >
-          <button 
-            type="button" 
-            class="password-toggle"
-            (click)="togglePassword()"
-          >
-            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+        <form class="auth-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+
+          <!-- Champ Identifiant (Email OU Téléphone) -->
+          <div class="form-group">
+            <label for="identifier">Email ou Téléphone</label>
+            <div class="input-group">
+              <!-- J'ai conservé l'icône envelope, même si 'identifier' est plus général -->
+              <i class="fas fa-envelope"></i>
+              <input
+                type="text"
+                id="identifier"
+                name="identifier"
+                formControlName="identifier"
+                placeholder="Email ou Numéro de Téléphone"
+                required
+              >
+            </div>
+            <!-- Affichage des erreurs Identifiant -->
+            @if (authForm.get('identifier')?.invalid && (authForm.get('identifier')?.dirty || authForm.get('identifier')?.touched)) {
+              @if (authForm.get('identifier')?.errors?.['required']) {
+                <p class="text-sm text-red-600 mt-1">L'identifiant est requis.</p>
+              } @else if (authForm.get('identifier')?.errors?.['invalidFormat']) {
+                <p class="text-sm text-red-600 mt-1">Veuillez entrer une adresse email ou un numéro de téléphone valide.</p>
+              }
+            }
+          </div>
+
+          <!-- Champ Mot de passe -->
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <div class="input-group">
+              <i class="fas fa-lock"></i>
+              <input
+                [type]="showPassword() ? 'text' : 'password'"
+                id="password"
+                name="password"
+                formControlName="password"
+                placeholder="Votre mot de passe"
+                required
+              >
+              <button
+                type="button"
+                class="password-toggle"
+                (click)="togglePassword()"
+              >
+                <!-- Utilisation de la fonction signal() dans la classe -->
+                <i [class]="showPassword() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+              </button>
+            </div>
+            <!-- Affichage des erreurs Mot de passe -->
+            @if (authForm.get('password')?.invalid && (authForm.get('password')?.dirty || authForm.get('password')?.touched)) {
+              @if (authForm.get('password')?.errors?.['required']) {
+                <p class="text-sm text-red-600 mt-1">Le mot de passe est requis.</p>
+              } @else if (authForm.get('password')?.errors?.['minlength']) {
+                <p class="text-sm text-red-600 mt-1">Minimum 6 caractères.</p>
+              }
+            }
+          </div>
+
+          <!-- Message d'erreur général -->
+          @if (error()) {
+            <div class="p-2 text-sm font-medium text-red-700 bg-red-100 rounded-lg my-3" role="alert">
+              {{ error() }}
+            </div>
+          }
+
+          <div class="form-options">
+            <!-- Rappelez-vous que 'rememberMe' doit être un FormControl dans le FormGroup si vous voulez gérer son état -->
+            <label class="checkbox-container">
+              <!-- J'ai désactivé [(ngModel)] car vous utilisez Reactive Forms -->
+              <input type="checkbox" name="rememberMe" [ngModel]="true" [ngModelOptions]="{standalone: true}">
+              <span class="checkmark"></span>
+              Se souvenir de moi
+            </label>
+            <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+          </div>
+
+          <button type="submit" class="btn-submit" [disabled]="authForm.invalid || isLoading()">
+            @if (!isLoading()) {
+              <span>Se connecter</span>
+            } @else {
+              <span class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                Connexion...
+              </span>
+            }
+          </button>
+        </form>
+
+        <div class="auth-divider">
+          <span>ou</span>
+        </div>
+
+        <!-- ... Reste de votre structure ... -->
+
+        <div class="social-login">
+          <button class="btn-social btn-google">
+            <i class="fab fa-google"></i>
+            Continuer avec Google
+          </button>
+          <button class="btn-social btn-facebook">
+            <i class="fab fa-facebook-f"></i>
+            Continuer avec Facebook
           </button>
         </div>
+
+        <div class="auth-footer">
+          <p>Pas encore de compte ?
+            <a routerLink="/inscrire" class="link-signup">Créer un compte</a>
+          </p>
+        </div>
       </div>
 
-      <div class="form-options">
-        <label class="checkbox-container">
-          <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe">
-          <span class="checkmark"></span>
-          Se souvenir de moi
-        </label>
-        <a href="#" class="forgot-password">Mot de passe oublié ?</a>
-      </div>
-
-      <button type="submit" class="btn-submit" [disabled]="isLoading">
-        <span *ngIf="!isLoading">Se connecter</span>
-        <span *ngIf="isLoading" class="loading">
-          <i class="fas fa-spinner fa-spin"></i>
-          Connexion...
-        </span>
-      </button>
-    </form>
-
-    <div class="auth-divider">
-      <span>ou</span>
-    </div>
-
-    <div class="social-login">
-      <button class="btn-social btn-google">
-        <i class="fab fa-google"></i>
-        Continuer avec Google
-      </button>
-      <button class="btn-social btn-facebook">
-        <i class="fab fa-facebook-f"></i>
-        Continuer avec Facebook
-      </button>
-    </div>
-
-    <div class="auth-footer">
-      <p>Pas encore de compte ? 
-        <a routerLink="/inscrire" class="link-signup">Créer un compte</a>
-      </p>
-    </div>
-  </div>
-
-  <div class="auth-illustration">
-    <div class="illustration-content">
-      <h2>Bienvenue chez NCC Formation</h2>
-      <p>Accédez à nos formations exclusives, ressources pédagogiques et suivez votre progression en temps réel.</p>
-      <div class="features">
-        <div class="feature">
-          <i class="fas fa-graduation-cap"></i>
-          <span>Formations certifiantes</span>
-        </div>
-        <div class="feature">
-          <i class="fas fa-users"></i>
-          <span>Communauté active</span>
-        </div>
-        <div class="feature">
-          <i class="fas fa-chart-line"></i>
-          <span>Suivi de progression</span>
+      <div class="auth-illustration">
+        <div class="illustration-content">
+          <h2>Bienvenue chez NCC Formation</h2>
+          <p>Accédez à nos formations exclusives, ressources pédagogiques et suivez votre progression en temps réel.</p>
+          <div class="features">
+            <div class="feature">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Formations certifiantes</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-users"></i>
+              <span>Communauté active</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-chart-line"></i>
+              <span>Suivi de progression</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  `,
+  styleUrls: ['./connexion.css'] // Maintenu pour garder le lien CSS initial
+})
+export class Connexion {
+  // Remplacements des propriétés simples par des Signals :
+  error = signal<string | null>(null);
+  isLoading = signal(false);
+  showPassword = signal(false);
+
+  // Formulaire Réactif pour l'identifiant (Email OU Téléphone) et le mot de passe
+  authForm = new FormGroup({
+    identifier: new FormControl('', [Validators.required]), // 'identifier' remplace 'email'
+    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+  });
+
+  /**
+   * Vérifie si la chaîne de caractères est au format email.
+   */
+  private isEmail(input: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(input);
+  }
+
+  /**
+   * Vérifie si la chaîne de caractères est au format numéro de téléphone (simple).
+   */
+  private isPhoneNumber(input: string): boolean {
+    const phoneRegex = /^\+?[0-9\s-]{8,20}$/;
+    return phoneRegex.test(input.trim());
+  }
+
+  /**
+   * Logique de soumission du formulaire, adaptée pour l'Email OU le Téléphone.
+   */
+  onSubmit(): void {
+    this.error.set(null); // Réinitialiser l'erreur
+
+    if (this.authForm.invalid) {
+      this.error.set("Veuillez remplir correctement tous les champs.");
+      this.authForm.markAllAsTouched();
+      return;
+    }
+
+    const { identifier, password } = this.authForm.value;
+
+    if (!identifier || !password) return;
+
+    // 1. Validation du format de l'identifiant (Email OU Téléphone)
+    const isEmailFormat = this.isEmail(identifier);
+    const isPhoneFormat = this.isPhoneNumber(identifier);
+
+    let authType: 'Email' | 'Téléphone';
+    if (isEmailFormat) {
+      authType = 'Email';
+    } else if (isPhoneFormat) {
+      authType = 'Téléphone';
+    } else {
+      this.error.set("Veuillez entrer une adresse email ou un numéro de téléphone valide.");
+      // Ajout de l'erreur 'invalidFormat' pour afficher le message spécifique dans le template
+      this.authForm.get('identifier')?.setErrors({ 'invalidFormat': true });
+      this.authForm.get('identifier')?.markAsTouched();
+      return;
+    }
+
+    console.log(`Tentative de connexion avec ${authType}: ${identifier}`);
+
+    this.isLoading.set(true); // Démarre l'indicateur de chargement
+
+    // 2. Simulation d'une requête API (votre logique backend réelle irait ici)
+    setTimeout(() => {
+      this.isLoading.set(false);
+
+      // Utilisateurs tests :
+      const emailMatch = (identifier === 'test@exemple.com' && password === 'password');
+      const phoneMatch = (identifier === '0612345678' && password === 'password');
+
+      if (emailMatch || phoneMatch) {
+        this.error.set(null);
+        console.log('Connexion réussie !');
+        // TODO: Redirection ou gestion de la session
+      } else {
+        this.error.set(`Échec de la connexion. Vérifiez votre ${authType.toLowerCase()} et votre mot de passe.`);
+        console.error('Échec de la connexion.');
+      }
+    }, 2000);
+  }
+
+  togglePassword(): void {
+    // Utilisation d'un signal pour basculer l'état
+    this.showPassword.update(value => !value);
+  }
+}

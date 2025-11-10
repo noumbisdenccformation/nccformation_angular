@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 import { Header } from './header/header';
 import { Footer } from './footer/footer';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -11,5 +12,5 @@ import { Footer } from './footer/footer';
   styleUrls: ['./app.css']
 })
 export class App {
-  protected title = 'ncc-frontend';
+  title = 'NCC Formation';
 }
