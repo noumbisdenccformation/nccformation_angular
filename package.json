@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:vercel": "ng build --configuration production --base-href /",
-    "vercel-build": "ng build --configuration production"
+    "vercel-build": "ng build --configuration production --output-path=dist/ncc-frontend/browser",
+    "pre-deploy": "node pre-deploy-check.js",
+    "deploy:check": "npm run pre-deploy && npm run build"
   },
   "prettier": {
     "overrides": [
@@ -23,17 +25,14 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^20.0.0",
-    "@angular/cdk": "^19.0.0",
+    "@angular/cdk": "^20.0.0",
     "@angular/common": "^20.0.0",
     "@angular/compiler": "^20.0.0",
     "@angular/core": "^20.0.0",
-    "@angular/fire": "^18.0.1",
     "@angular/forms": "^20.0.0",
-    "@angular/material": "^19.0.0",
+    "@angular/material": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "firebase": "^12.3.0",
-    "firebase-tools": "^14.18.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

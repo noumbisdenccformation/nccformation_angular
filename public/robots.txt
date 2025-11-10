@@ -1,0 +1,21 @@
+# robots.txt pour NCC-Academy
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nccformation-angular-spaa.vercel.app/sitemap.xml
+
+# Pages importantes
+Allow: /
+Allow: /formations
+Allow: /quiz
+Allow: /about
+Allow: /contact
+
+# Optimisation du crawl
+Crawl-delay: 1
+
+# Désactiver l'indexation des assets
+Disallow: /assets/
+Disallow: /*.js$
+Disallow: /*.css$
