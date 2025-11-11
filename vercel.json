@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "npm run vercel-build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist/ncc-frontend/browser",
-  "installCommand": "rm -f package-lock.json && npm install --legacy-peer-deps --force",
+  "installCommand": "npm install --legacy-peer-deps",
   "framework": null,
   "routes": [
     {

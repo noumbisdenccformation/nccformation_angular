@@ -6,11 +6,7 @@
     "start": "ng serve",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "build:vercel": "ng build --configuration production --base-href /",
-    "vercel-build": "ng build --configuration production --output-path=dist/ncc-frontend/browser",
-    "pre-deploy": "node pre-deploy-check.js",
-    "deploy:check": "npm run pre-deploy && npm run build"
+    "test": "ng test"
   },
   "prettier": {
     "overrides": [
