@@ -10,8 +10,8 @@ import { MockAuthService } from '../services/mock-auth.service';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './connexion-new.html',
-  styleUrls: ['./connexion-new.css']
+  templateUrl: './connexion.html',
+  styleUrls: ['./connexion.css']
 })
 export class Connexion {
   error = signal<string | null>(null);

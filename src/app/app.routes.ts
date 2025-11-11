@@ -20,6 +20,6 @@ export const routes: Routes = [
   { path: 'formation/:id', loadComponent: () => import('./formation/formation').then(m => m.Formation) },
   { path: 'coaching', loadComponent: () => import('./coaching/coaching').then(m => m.Coaching) },
   { path: 'numerique', loadComponent: () => import('./numerique/numerique').then(m => m.Numerique) },
-  { path: 'connexion', loadComponent: () => import('./connexion/connexion-new').then(m => m.Connexion) },
+  { path: 'connexion', loadComponent: () => import('./connexion/connexion').then(m => m.Connexion) },
   { path: 'inscrire', loadComponent: () => import('./inscrire/inscrire').then(m => m.Inscrire) },
 ];
