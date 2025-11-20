@@ -19,11 +19,20 @@
     </div>
   </div>
 
-  <!-- NOUVEAU : Bouton de connexion -->
-  <div class="auth-section">
+  <!-- NOUVEAU : Boutons connexion / déconnexion -->
+  <!-- Afficher Connexion si l'utilisateur n'est pas authentifié -->
+  <div class="auth-section" *ngIf="!(isAuthenticated$ | async)">
     <button class="btn-connexion" (click)="navigateTo('connexion')">
       <span class="user-icon">👤</span>
       <span>Connexion</span>
+    </button>
+  </div>
+
+  <!-- Afficher Déconnexion si l'utilisateur est authentifié -->
+  <div class="auth-section" *ngIf="isAuthenticated$ | async">
+    <button class="btn-connexion" (click)="logout()">
+      <span class="user-icon">👤</span>
+      <span>Déconnexion</span>
     </button>
   </div>
 

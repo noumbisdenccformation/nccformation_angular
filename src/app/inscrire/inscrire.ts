@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { MockAuthService } from '../services/mock-auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-inscrire',
@@ -20,7 +20,7 @@ export class Inscrire {
 
   constructor(
     private fb: FormBuilder,
-    private authService: MockAuthService,
+    private authService: AuthService,
     private router: Router
   ) {
     this.registerForm = this.fb.group({
