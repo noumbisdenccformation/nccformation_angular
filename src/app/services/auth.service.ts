@@ -299,6 +299,10 @@ export class AuthService {
       case 'auth/wrong-password':
         message = 'Mot de passe incorrect';
         break;
+      case 'auth/invalid-credential':
+      case 'auth/invalid-login-credentials':
+        message = 'Identifiants incorrects. Vérifiez votre email/numéro de téléphone et votre mot de passe.';
+        break;
       case 'auth/too-many-requests':
         message = 'Trop de tentatives. Veuillez réessayer plus tard';
         break;
