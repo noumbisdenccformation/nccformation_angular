@@ -12,6 +12,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent {
   isAuthenticated$;
+  isMenuOpen = false;
 
   constructor(
     private router: Router,
@@ -22,10 +23,16 @@ export class HeaderComponent {
 
   navigateTo(route: string) {
     this.router.navigate([route]);
+    this.isMenuOpen = false;
   }
 
   async logout() {
     await this.authService.logout();
     this.router.navigate(['connexion']);
+    this.isMenuOpen = false;
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

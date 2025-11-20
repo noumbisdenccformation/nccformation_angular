@@ -5,8 +5,9 @@
       <img src="assets/img/logo-ncc.png" alt="Logo NCC">
     </button>
   </div>
-  
-  <div class="dessus">
+
+  <!-- Header desktop -->
+  <div class="dessus desktop-only">
     <div class="menudvptperso">
       <button class="dvpt" (click)="navigateTo('boutique')">Boutique</button>
       <button class="dvpt" (click)="navigateTo('ressources')">Ressources</button>
@@ -19,9 +20,9 @@
     </div>
   </div>
 
-  <!-- NOUVEAU : Boutons connexion / déconnexion -->
+  <!-- NOUVEAU : Boutons connexion / déconnexion (desktop) -->
   <!-- Afficher Connexion si l'utilisateur n'est pas authentifié -->
-  <div class="auth-section" *ngIf="!(isAuthenticated$ | async)">
+  <div class="auth-section desktop-only" *ngIf="!(isAuthenticated$ | async)">
     <button class="btn-connexion" (click)="navigateTo('connexion')">
       <span class="user-icon">👤</span>
       <span>Connexion</span>
@@ -29,14 +30,42 @@
   </div>
 
   <!-- Afficher Déconnexion si l'utilisateur est authentifié -->
-  <div class="auth-section" *ngIf="isAuthenticated$ | async">
+  <div class="auth-section desktop-only" *ngIf="isAuthenticated$ | async">
     <button class="btn-connexion" (click)="logout()">
       <span class="user-icon">👤</span>
       <span>Déconnexion</span>
     </button>
   </div>
 
-  <div class="dessous">
+  <!-- Header mobile avec menu hamburger -->
+  <div class="mobile-header">
+    <div class="mobile-header-left" (click)="navigateTo('accueil')">
+      <img src="assets/img/logo-ncc.png" alt="Logo NCC">
+      <span class="mobile-title">NCC-Formation</span>
+    </div>
+    <div class="mobile-header-actions">
+      <button class="mobile-auth" *ngIf="!(isAuthenticated$ | async)" (click)="navigateTo('connexion')">
+        Connexion
+      </button>
+      <button class="mobile-auth" *ngIf="isAuthenticated$ | async" (click)="logout()">
+        Déconnexion
+      </button>
+      <button class="menu-toggle" (click)="toggleMenu()">
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-menu" [class.open]="isMenuOpen">
+    <button (click)="navigateTo('boutique')">Boutique</button>
+    <button (click)="navigateTo('ressources')">Ressources</button>
+    <button (click)="navigateTo('evenements')">Événements</button>
+    <button (click)="navigateTo('crypto')">Crypto-monnaies</button>
+    <button (click)="navigateTo('formation')">Formation</button>
+    <button (click)="navigateTo('coaching')">Coaching</button>
+  </nav>
+
+  <div class="dessous desktop-only">
     <div class="description-site">NCC-Formation : De la passion à la monétisation!</div>
   </div>
 </header>
