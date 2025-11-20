@@ -6,10 +6,14 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
+  sendEmailVerification,
   sendPasswordResetEmail,
   GoogleAuthProvider,
   signInWithPopup,
-  FacebookAuthProvider
+  FacebookAuthProvider,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+  ConfirmationResult
 } from '@angular/fire/auth';
 import {
   Firestore,
@@ -35,6 +39,9 @@ export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
+  private phoneRecaptchaVerifier: RecaptchaVerifier | null = null;
+  private phoneConfirmationResult: ConfirmationResult | null = null;
+
   constructor(
     private auth: Auth,
     private firestore: Firestore
@@ -51,6 +58,8 @@ export class AuthService {
 
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
       const firebaseUser = userCredential.user;
+
+      await sendEmailVerification(firebaseUser);
 
       await updateProfile(firebaseUser, {
         displayName: `${firstName} ${lastName}`
@@ -84,6 +93,63 @@ export class AuthService {
     }
   }
 
+  initPhoneRecaptcha(containerId: string): void {
+    if (this.phoneRecaptchaVerifier) {
+      return;
+    }
+
+    this.phoneRecaptchaVerifier = new RecaptchaVerifier(this.auth, containerId, {
+      size: 'invisible'
+    });
+  }
+
+  private normalizePhoneNumber(phone: string): string {
+    let normalized = phone.replace(/\s/g, '');
+
+    if (normalized.startsWith('+')) {
+      return normalized;
+    }
+
+    if (normalized.startsWith('237')) {
+      return `+${normalized}`;
+    }
+
+    if (normalized.startsWith('6')) {
+      return `+237${normalized}`;
+    }
+
+    return normalized;
+  }
+
+  async sendPhoneVerificationCode(phone: string): Promise<void> {
+    try {
+      if (!this.phoneRecaptchaVerifier) {
+        throw new Error('Recaptcha non initialisé pour la vérification du téléphone');
+      }
+
+      const formattedPhone = this.normalizePhoneNumber(phone);
+      this.phoneConfirmationResult = await signInWithPhoneNumber(this.auth, formattedPhone, this.phoneRecaptchaVerifier);
+    } catch (error: any) {
+      console.error('Erreur lors de l\'envoi du code SMS:', error);
+      throw this.handleAuthError(error);
+    }
+  }
+
+  async verifyPhoneCode(code: string): Promise<void> {
+    try {
+      if (!this.phoneConfirmationResult) {
+        throw new Error('Aucun code de vérification en attente');
+      }
+
+      await this.phoneConfirmationResult.confirm(code);
+      await signOut(this.auth);
+      this.phoneConfirmationResult = null;
+    } catch (error: any) {
+      console.error('Erreur lors de la vérification du code SMS:', error);
+      throw this.handleAuthError(error);
+    }
+  }
+
   async login(emailOrPhone: string, password: string): Promise<User> {
     try {
       let email = emailOrPhone;
@@ -96,6 +162,10 @@ export class AuthService {
       }
 
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      if (!userCredential.user.emailVerified) {
+        await signOut(this.auth);
+        throw new Error('Veuillez vérifier votre adresse email avant de vous connecter. Si vous ne voyez pas le message dans votre boîte de réception, pensez à vérifier aussi votre dossier Spam ou Courrier indésirable.');
+      }
       const user = await this.getUserData(userCredential.user.uid);
 
       if (!user) {
