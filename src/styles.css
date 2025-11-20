@@ -186,6 +186,15 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+  /* Sur mobile, l'application occupe toute la largeur de la fenêtre */
+  body {
+    align-items: stretch;
+  }
+
+  app-root {
+    width: 100%;
+  }
+
   .container {
     padding: 0 1rem;
   }
@@ -440,6 +449,53 @@ app-footer {
     flex-shrink: 0;
 }
 
+/* Responsive global layout pour petits écrans */
+@media (max-width: 768px) {
+  header {
+    top: 0;
+  }
 
+  header .dessus,
+  header .dessous {
+    width: 100vw;
+    left: 0;
+    right: 0;
+    transform: none;
+    border-radius: 0;
+  }
 
+  header .dessous .description-site {
+    font-size: 18px;
+    padding: 4px 8px;
+  }
 
+  .contenu {
+    width: 100vw;
+    margin: 80px 0 24px 0;
+    border-radius: 0;
+    padding: 1rem;
+  }
+
+  footer .dessus,
+  footer .dessous {
+    width: 100vw;
+    transform: none;
+    border-radius: 0;
+  }
+
+  footer .dessus .adresse .element {
+    font-size: 14px;
+    padding: 4px;
+  }
+
+  footer .dessous .copyright {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenu {
+    padding: 0.75rem;
+  }
+}

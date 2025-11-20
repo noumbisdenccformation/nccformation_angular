@@ -1,13 +1,13 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { MockAuthService } from '../services/mock-auth.service';
+import { AuthService } from '../services/auth.service';
 
 /**
  * Guard d'authentification
  * Protège les routes qui nécessitent une connexion
  */
 export const authGuard = () => {
-  const authService = inject(MockAuthService);
+  const authService = inject(AuthService);
   const router = inject(Router);
 
   if (authService.isAuthenticated()) {

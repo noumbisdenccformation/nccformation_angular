@@ -1,6 +1,7 @@
 <!--pied de page!-->
 <footer>
-  <div class="dessus">
+  <!-- Footer desktop -->
+  <div class="dessus desktop-only">
     <div class="adresse">
       <div class="element">
         <i class='fa fa-location-pin'></i>
@@ -16,21 +17,60 @@
       </div>
     </div>
     <div class="social-links">
-      <a href="https://chat.whatsapp.com/K74iVrPwypGJ3h4YN1taiN" target="_blank">
+      <a href="https://chat.whatsapp.com/FoimeeiH7kLB0mqMdcgpJH" target="_blank">
         <i class="fab fa-whatsapp"></i>
       </a>
-      <a href="#" target="_blank">
+      <a href="https://www.facebook.com/profile.php?id=100066984393027" target="_blank">
         <i class="fab fa-facebook"></i>
       </a>
-      <a href="#" target="_blank">
-        <i class="fab fa-linkedin"></i>
+      <a href="https://t.me/+kl-FcQu_G8Q2MmE0" target="_blank">
+        <i class="fab fa-telegram"></i>
       </a>
-      <a href="#" target="_blank">
+      <a href="https://www.youtube.com/@nccformation" target="_blank">
         <i class="fab fa-youtube"></i>
       </a>
     </div>
   </div>
-  <div class="dessous">
+  <div class="dessous desktop-only">
     <div class="copyright">&copy; Copyright &#64; {{currentYear}} by <span>NCC-formation</span> | All rights reserved!</div>
+  </div>
+
+  <!-- Footer mobile avec bouton déroulant -->
+  <div class="mobile-footer">
+    <button class="mobile-footer-toggle" (click)="toggleMobileFooter()">
+      <span>Contact &amp; Réseaux</span>
+      <span class="chevron" [class.open]="isMobileFooterOpen">▾</span>
+    </button>
+    <div class="mobile-footer-panel" [class.open]="isMobileFooterOpen">
+      <div class="mobile-footer-section">
+        <i class='fa fa-location-pin'></i>
+        <span>carrefour IPA - Ange Raphael / Douala</span>
+      </div>
+      <div class="mobile-footer-section">
+        <i class='fa fa-envelope-square'></i>
+        <span>noumbissiej&#64;gmail.com</span>
+      </div>
+      <div class="mobile-footer-section">
+        <i class='fa fa-phone'></i>
+        <span>(+237) 677 27 74 51 / 658 78 02 93</span>
+      </div>
+      <div class="mobile-footer-socials">
+        <a href="https://chat.whatsapp.com/FoimeeiH7kLB0mqMdcgpJH" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100066984393027" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://t.me/+kl-FcQu_G8Q2MmE0" target="_blank">
+          <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://www.youtube.com/@nccformation" target="_blank">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+      <div class="mobile-footer-copy">
+        &copy; {{currentYear}} NCC-formation
+      </div>
+    </div>
   </div>
 </footer>

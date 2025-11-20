@@ -8,7 +8,8 @@ import {
   updateProfile,
   sendPasswordResetEmail,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  FacebookAuthProvider
 } from '@angular/fire/auth';
 import {
   Firestore,
@@ -183,6 +184,46 @@ export class AuthService {
       return user;
     } catch (error: any) {
       console.error('Erreur lors de la connexion Google:', error);
+      throw this.handleAuthError(error);
+    }
+  }
+
+  async loginWithFacebook(): Promise<User> {
+    try {
+      const provider = new FacebookAuthProvider();
+      const userCredential = await signInWithPopup(this.auth, provider);
+      const firebaseUser = userCredential.user;
+
+      let user = await this.getUserData(firebaseUser.uid);
+
+      if (!user) {
+        const names = firebaseUser.displayName?.split(' ') || ['', ''];
+        user = {
+          id: firebaseUser.uid,
+          email: firebaseUser.email || '',
+          phone: '',
+          firstName: names[0],
+          lastName: names.slice(1).join(' '),
+          profileImage: firebaseUser.photoURL || undefined,
+          quizCompleted: false,
+          enrolledFormations: [],
+          createdAt: new Date(),
+          updatedAt: new Date()
+        };
+
+        await setDoc(doc(this.firestore, 'users', firebaseUser.uid), {
+          ...user,
+          createdAt: Timestamp.fromDate(user.createdAt),
+          updatedAt: Timestamp.fromDate(user.updatedAt)
+        });
+      }
+
+      this.currentUserSubject.next(user);
+      this.isAuthenticatedSubject.next(true);
+
+      return user;
+    } catch (error: any) {
+      console.error('Erreur lors de la connexion Facebook:', error);
       throw this.handleAuthError(error);
     }
   }

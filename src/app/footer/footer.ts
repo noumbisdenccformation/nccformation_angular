@@ -9,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class Footer {
   currentYear: number = new Date().getFullYear();
+  isMobileFooterOpen = false;
+
+  toggleMobileFooter() {
+    this.isMobileFooterOpen = !this.isMobileFooterOpen;
+  }
 }

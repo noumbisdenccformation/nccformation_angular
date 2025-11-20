@@ -91,11 +91,11 @@
 
         <!-- Connexion sociale -->
         <div class="social-buttons">
-          <button type="button" class="btn-social btn-google">
+          <button type="button" class="btn-social btn-google" (click)="onLoginWithGoogle()" [disabled]="isLoading()">
             <i class="fab fa-google"></i>
             Continuer avec Google
           </button>
-          <button type="button" class="btn-social btn-facebook">
+          <button type="button" class="btn-social btn-facebook" (click)="onLoginWithFacebook()" [disabled]="isLoading()">
             <i class="fab fa-facebook"></i>
             Continuer avec Facebook
           </button>

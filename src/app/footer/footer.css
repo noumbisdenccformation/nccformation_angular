@@ -4,14 +4,15 @@ footer{
 }
 
 footer .dessus{
-    width: 190vh; 
-    height: 50px; 
+    width: 100vw; 
+    /* hauteur auto pour ne pas couper les icones de réseaux sociaux */
+    height: auto;
     box-sizing: border-box;
     background-color: white; 
     border-radius: 100px 100px 0 0; 
     border: 1px blue solid;
     position: relative;
-    transform: translateX(+1.7%); 
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content:center;
@@ -67,7 +68,7 @@ footer .dessus .social-links a:hover{
 }
 
 footer .dessous{
-    width: 190vh; 
+    width: 100vw; 
     height: 50px; 
     box-sizing: border-box;
     background-color: blue; 
@@ -75,7 +76,7 @@ footer .dessous{
     border: 1px blue solid;
     position: relative;
     top: 0; 
-    transform: translateX(+1.7%); 
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,4 +89,87 @@ footer .dessous .copyright{
     color: chartreuse;
     font-weight: bolder;
     padding-top: 15px;
+}
+
+/* Footer mobile */
+
+.mobile-footer {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* Cacher le grand footer arrondi sur mobile */
+    footer .dessus.desktop-only,
+    footer .dessous.desktop-only {
+        display: none;
+    }
+
+    .mobile-footer {
+        display: block;
+        width: 100vw;
+        position: relative;
+        margin-top: 8px;
+    }
+
+    .mobile-footer-toggle {
+        width: 100%;
+        background: blue;
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    .mobile-footer-panel {
+        background: #fff;
+        border-top: 1px solid #ddd;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+    }
+
+    .mobile-footer-panel.open {
+        max-height: 260px;
+    }
+
+    .mobile-footer-section {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        font-size: 13px;
+        color: maroon;
+    }
+
+    .mobile-footer-socials {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        padding: 8px 0 4px;
+    }
+
+    .mobile-footer-socials a {
+        color: maroon;
+        font-size: 20px;
+    }
+
+    .mobile-footer-copy {
+        text-align: center;
+        padding: 4px 8px 8px;
+        font-size: 12px;
+        color: blue;
+        font-weight: 600;
+    }
+
+    .chevron {
+        display: inline-block;
+        transition: transform 0.25s ease;
+    }
+
+    .chevron.open {
+        transform: rotate(180deg);
+    }
 }

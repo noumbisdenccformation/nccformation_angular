@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +13,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './connexion.html',
   styleUrls: ['./connexion.css']
 })
-export class Connexion {
+export class Connexion implements OnInit {
   error = signal<string | null>(null);
   isLoading = signal(false);
   showPassword = signal(false);
@@ -27,6 +27,14 @@ export class Connexion {
     private authService: AuthService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    // Si l'utilisateur est déjà authentifié, éviter d'afficher le formulaire de connexion
+    if (this.authService.isAuthenticated()) {
+      // On peut affiner selon le statut du quiz si nécessaire
+      this.router.navigate(['/quiz']);
+    }
+  }
 
   private isEmail(input: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -72,13 +80,53 @@ export class Connexion {
       const user = await this.authService.login(identifier, password);
       this.error.set(null);
       
+      // Rediriger en fonction de l'état du quiz
       if (user.quizCompleted) {
-        this.router.navigate(['/dashboard']);
+        // Route dashboard non encore définie : on renvoie vers le résultat du quiz ou l'accueil
+        this.router.navigate(['/quiz-result']);
       } else {
         this.router.navigate(['/quiz']);
       }
     } catch (error: any) {
       this.error.set(error.message || `Échec de la connexion. Vérifiez votre ${authType.toLowerCase()} et votre mot de passe.`);
+    } finally {
+      this.isLoading.set(false);
+    }
+  }
+
+  async onLoginWithGoogle(): Promise<void> {
+    this.error.set(null);
+    this.isLoading.set(true);
+
+    try {
+      const user = await this.authService.loginWithGoogle();
+
+      if (user.quizCompleted) {
+        this.router.navigate(['/quiz-result']);
+      } else {
+        this.router.navigate(['/quiz']);
+      }
+    } catch (error: any) {
+      this.error.set(error.message || 'Une erreur est survenue lors de la connexion avec Google.');
+    } finally {
+      this.isLoading.set(false);
+    }
+  }
+
+  async onLoginWithFacebook(): Promise<void> {
+    this.error.set(null);
+    this.isLoading.set(true);
+
+    try {
+      const user = await this.authService.loginWithFacebook();
+
+      if (user.quizCompleted) {
+        this.router.navigate(['/quiz-result']);
+      } else {
+        this.router.navigate(['/quiz']);
+      }
+    } catch (error: any) {
+      this.error.set(error.message || 'Une erreur est survenue lors de la connexion avec Facebook.');
     } finally {
       this.isLoading.set(false);
     }
